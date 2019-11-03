@@ -1,0 +1,48 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+centerx	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var centerx = game_canvas.width \/ 2;$/;"	v	language:JavaScript
+centery	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var centery = game_canvas.height \/ 2;$/;"	v	language:JavaScript
+check_end	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function check_end()$/;"	f	language:JavaScript
+color	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^player[0] = {townhalls: 4, color: "#000000", current_soldier: [-1,-1], soldiers: []};$/;"	p	language:JavaScript	class:player
+color	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^player[1] = {townhalls: 4, color: "#ffffff", current_soldier: [-1,-1], soldiers: []};$/;"	p	language:JavaScript	class:player
+cols	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var cols = parseInt(document.currentScript.getAttribute('cols'));$/;"	v	language:JavaScript
+current_player	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var current_player = 0;$/;"	v	language:JavaScript
+current_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^player[0] = {townhalls: 4, color: "#000000", current_soldier: [-1,-1], soldiers: []};$/;"	p	language:JavaScript	class:player
+current_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^player[1] = {townhalls: 4, color: "#ffffff", current_soldier: [-1,-1], soldiers: []};$/;"	p	language:JavaScript	class:player
+DeSelectSoldier	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function DeSelectSoldier()$/;"	f	language:JavaScript
+dimension	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var dimension = [height, width];$/;"	v	language:JavaScript
+FillBoardSquares	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function FillBoardSquares()$/;"	f	language:JavaScript
+game_canvas	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var game_canvas = document.getElementById('GameBoard');$/;"	v	language:JavaScript
+game_ctx	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var game_ctx = game_canvas.getContext('2d');$/;"	v	language:JavaScript
+getCanvasMousePosition	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function getCanvasMousePosition (event)$/;"	f	language:JavaScript
+Guides	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function Guides(x, y, guide)$/;"	f	language:JavaScript
+guides_bomb	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var guides_bomb = [];$/;"	v	language:JavaScript
+guides_move	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var guides_move = [];$/;"	v	language:JavaScript
+guide_canvas	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var guide_canvas = document.getElementById('GuideLayer');$/;"	v	language:JavaScript
+guide_ctx	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var guide_ctx = guide_canvas.getContext('2d');$/;"	v	language:JavaScript
+height	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var height = parseInt(document.currentScript.getAttribute('height'));$/;"	v	language:JavaScript
+IsClickValid	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function IsClickValid(mouse)$/;"	f	language:JavaScript
+isInBoard	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function isInBoard(x, y)$/;"	f	language:JavaScript
+is_valid	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var is_valid = 0;$/;"	v	language:JavaScript
+MoveSoldier	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function MoveSoldier(x, y)$/;"	f	language:JavaScript
+Pair	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function Pair(x, y)$/;"	c	language:JavaScript
+piece_canvas	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var piece_canvas = document.getElementById('PieceLayer');$/;"	v	language:JavaScript
+piece_ctx	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var piece_ctx = piece_canvas.getContext('2d');$/;"	v	language:JavaScript
+PlaceSoldiers	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function PlaceSoldiers()$/;"	f	language:JavaScript
+PlaceTownHalls	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function PlaceTownHalls()$/;"	f	language:JavaScript
+PlotCorners	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function PlotCorners()$/;"	f	language:JavaScript
+PlotPoints	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function PlotPoints()$/;"	f	language:JavaScript
+Point	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function Point(x, y)$/;"	c	language:JavaScript
+required_move	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var required_move = 0;$/;"	v	language:JavaScript
+rows	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var rows = parseInt(document.currentScript.getAttribute('rows'));$/;"	v	language:JavaScript
+SelectSoldier	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function SelectSoldier(x, y)$/;"	f	language:JavaScript
+sign	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function sign(i)$/;"	f	language:JavaScript
+spacing	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var spacing = game_canvas.height \/ rows;$/;"	v	language:JavaScript
+startX	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var startX = null;$/;"	v	language:JavaScript
+startY	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var startY = null;$/;"	v	language:JavaScript
+SwitchPlayer	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function SwitchPlayer()$/;"	f	language:JavaScript
+test_canvas	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var test_canvas = document.getElementById('TestLayer');$/;"	v	language:JavaScript
+test_ctx	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var test_ctx = test_canvas.getContext('2d');$/;"	v	language:JavaScript
+ThrowBomb	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^function ThrowBomb(x, y)$/;"	f	language:JavaScript
+townhalls	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^player[0] = {townhalls: 4, color: "#000000", current_soldier: [-1,-1], soldiers: []};$/;"	p	language:JavaScript	class:player
+townhalls	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^player[1] = {townhalls: 4, color: "#ffffff", current_soldier: [-1,-1], soldiers: []};$/;"	p	language:JavaScript	class:player
+width	/home/dwijesh/Documents/sem5/ai/assns/assn2/Cannon-AI/js/Cannon.js	/^var width = parseInt(document.currentScript.getAttribute('width'));$/;"	v	language:JavaScript
