@@ -1296,6 +1296,332 @@ float board::dummy_utility_function()
 {
 	return (static_cast <float> (rand()) / static_cast <float> (RAND_MAX));
 }
+// new utility function for assn5 just implements the table given in the assignment in proper order
+// do_i_have_moves == True : I have moves, opponent does not have moves
+// do_i_have_moves == False: I don't have moves, opponent has moves
+float board::new_utility_function(bool do_i_have_moves)
+{
+	if(my_color == BLACK)
+	{
+		float score = (black_soldiers.size() * 1.0)/100;
+		switch(black_townhalls.size())	// my townhalls
+		{
+			case 4:
+				if(white_townhalls.size() == 2) // opponent townhalls
+				{
+					score += 10;
+					return score*5000;
+				}
+				break;
+			case 3:
+				if(white_townhalls.size() == 2)
+				{
+					score += 8;
+					return score*5000;
+				}
+				break;
+			case 2:
+				if(white_townhalls.size() == 3)
+				{
+					score += 2;
+					return score*5000;
+				}
+				else if(white_townhalls.size() == 4)
+				{
+					score += 0;
+					return score*5000;
+				}
+				break;
+		}
+		//////////////////// 	Stalemate  ///////////////////
+		////////////////////  condition 1  ////////////////////
+		// opponent has no soldiers left
+		if(white_soldiers.size() == 0)
+		{
+			// I am A
+			// opponent is B
+			switch(black_townhalls.size())
+			{
+				case 4:
+					switch(white_townhalls.size())
+					{
+						case 4:
+							score += 8;
+							return score;
+						case 3:
+							score += 10;
+							return score;
+					}
+					break;
+				case 3:
+					switch(white_townhalls.size())
+					{
+						case 4:
+							score += 6;
+							return score;
+						case 3:
+							score += 8;
+							return score;
+					}
+					break;
+			}
+		}
+		// I have no soldiers left
+		else if(black_soldiers.size() == 0)
+		{
+			// I am B
+			// opponent is A
+			switch(black_townhalls.size())
+			{
+				case 4:
+					switch(white_townhalls.size())
+					{
+						case 4:
+							score += 2;
+							return score;
+						case 3:
+							score += 0;
+							return score;
+					}
+					break;
+				case 3:
+					switch(white_townhalls.size())
+					{
+						case 4:
+							score += 4;
+							return score;
+						case 3:
+							score += 2;
+							return score;
+					}
+					break;
+			}
+		}
+		//////////////////  condtion 2  ///////////////////////
+		// opponent does not have moves
+		if(do_i_have_moves)
+		{
+			// I am A
+			// opponent is B
+			switch(black_townhalls.size())
+			{
+				case 4:
+					switch(white_townhalls.size())
+					{
+						case 4:
+							score += 6;
+							return score;
+						case 3:
+							score += 8;
+							return score;
+					}
+					break;
+				case 3:
+					switch(white_townhalls.size())
+					{
+						case 4:
+							score += 4;
+							return score;
+						case 3:
+							score += 6;
+							return score;
+					}
+					break;
+			}
+		}
+		// I don't have moves
+		else
+		{
+			// I am B
+			// opponent is A
+			switch(black_townhalls.size())
+			{
+				case 4:
+					switch(white_townhalls.size())
+					{
+						case 4:
+							score += 4;
+							return score;
+						case 3:
+							score += 2;
+							return score;
+					}
+					break;
+				case 3:
+					switch(white_townhalls.size())
+					{
+						case 4:
+							score += 6;
+							return score;
+						case 3:
+							score += 4;
+							return score;
+					}
+					break;
+			}
+		}
+	}
+	else
+	{
+		float score = (white_soldiers.size() * 1.0)/100;
+		switch(white_townhalls.size())	// my townhalls
+		{
+			case 4:
+				if(black_townhalls.size() == 2) // opponent townhalls
+				{
+						score += 10;
+						return score*5000;
+				}
+				break;
+			case 3:
+				if(black_townhalls.size() == 2)
+				{
+						score += 8;
+						return score*5000;
+				}
+				break;
+			case 2:
+				if(black_townhalls.size() == 3)
+				{
+						score += 2;
+						return score*5000;
+				}
+				else if(black_townhalls.size() == 4)
+				{
+						score += 0;
+						return score*5000;
+				}
+				break;
+		}
+		//////////////////   Stalemate 	 ////////////////
+		/////////////////   condition 1	////////////////
+		// opponent has no soldiers left
+		if(black_soldiers.size() == 0)
+		{
+			// I am A
+			// opponent is B
+			switch(white_townhalls.size())
+			{
+				case 4:
+					switch(black_townhalls.size())
+					{
+						case 4:
+							score += 8;
+							break;
+						case 3:
+							score += 10;
+							break;
+					}
+					break;
+				case 3:
+					switch(black_townhalls.size())
+					{
+						case 4:
+							score += 6;
+							break;
+						case 3:
+							score += 8;
+							break;
+					}
+					break;
+			}
+		}
+		// I have no soldiers left
+		else if(white_soldiers.size() == 0)
+		{
+			// I am B
+			// opponent is A
+			switch(white_townhalls.size())
+			{
+				case 4:
+					switch(black_townhalls.size())
+					{
+						case 4:
+							score += 2;
+							break;
+						case 3:
+							score += 0;
+							break;
+					}
+					break;
+				case 3:
+					switch(black_townhalls.size())
+					{
+						case 4:
+							score += 4;
+							break;
+						case 3:
+							score += 2;
+							break;
+					}
+					break;
+			}
+		}
+		//////////////////  condtion 2  ///////////////////////
+		// opponent does not have moves
+		if(do_i_have_moves)
+		{
+			// I am A
+			// opponent is B
+			switch(white_townhalls.size())
+			{
+				case 4:
+					switch(black_townhalls.size())
+					{
+						case 4:
+							score += 6;
+							return score;
+						case 3:
+							score += 8;
+							return score;
+					}
+					break;
+				case 3:
+					switch(black_townhalls.size())
+					{
+						case 4:
+							score += 4;
+							return score;
+						case 3:
+							score += 6;
+							return score;
+					}
+					break;
+			}
+		}
+		// I don't have moves
+		else
+		{
+			// I am B
+			// opponent is A
+			switch(white_townhalls.size())
+			{
+				case 4:
+					switch(black_townhalls.size())
+					{
+						case 4:
+							score += 4;
+							return score;
+						case 3:
+							score += 2;
+							return score;
+					}
+					break;
+				case 3:
+					switch(black_townhalls.size())
+					{
+						case 4:
+							score += 6;
+							return score;
+						case 3:
+							score += 4;
+							return score;
+					}
+					break;
+			}
+		}
+	}
+}
 // utility function just implements the table given in the assignment in proper order
 float board::utility_function(bool do_i_have_moves)
 {

@@ -3,6 +3,7 @@
 #include <map>
 #include <unordered_map>
 #include <utility>
+#include <assert.h>
 using namespace std;
 
 typedef enum{OUR_ACTION, OPPONENT_ACTION} action_by;
@@ -86,6 +87,7 @@ class board
 		float dummy_utility_function();
 		float eval_function();
 		float utility_function(bool);
+		float new_utility_function(bool);
 		vector<action> update_white_feature_values();
 		vector<action> update_black_feature_values();
 		void print_all_actions(vector<action>);

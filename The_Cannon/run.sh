@@ -1,1 +1,1 @@
-./AI-Assignments/a2_2_tt/a.out
+./assn5_code/a.out

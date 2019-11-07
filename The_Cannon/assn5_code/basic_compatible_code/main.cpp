@@ -30,7 +30,7 @@ int main()
 	temp_string = "";
 	while(index < calibration_string_length)	{ temp_string += calibration[index]; index++;}
 	time_ms = stoi(temp_string)*1000;		// milli seconds
-	
+	if(n==10 and m == 10)	soldiers_per_team = 15;	
 
 
 	// we can be BLACK or WHITE. position of black and white are fix.
@@ -113,14 +113,19 @@ int main()
 			continue;
 		}
 		
-		// checking the time per move
-		if(time_ms - time_spent_so_far_ms >= 60)	// start of the game
+		//  	Game duration: 
+		//    			|------- 30% ------|----------------- 40% -------------|--- 15% ---|-- 14% --|- 1% -|
+		//    	Time/move:	1500 ms			3000 ms				1000 ms	    500 ms    100 ms
+		//    	Just to make sure that time out does not occure due to us, introduced a very quick step in the last 1% of the game
+		if(time_ms - time_spent_so_far_ms >= (0.7)*time_ms)
 			best_action = minimax_decision(game, 1500);
-		else if(time_ms - time_spent_so_far_ms >= 30)
+		else if(time_ms - time_spent_so_far_ms >= 0.3*time_ms)
 			best_action = minimax_decision(game, 3000);
-		else if(time_ms- time_spent_so_far_ms >= 15)
+		else if(time_ms- time_spent_so_far_ms >= 0.15*time_ms)
 			best_action = minimax_decision(game, 1000);
-		else 	best_action = minimax_decision(game, 500);
+		else if(time_ms - time_spent_so_far_ms >= 0.01*time_ms)
+			best_action = minimax_decision(game, 500);
+		else	best_action = minimax_decision(game, 100);
 		// printing the results
 		cout << "S " << best_action.get_soldier_c() << " " << best_action.get_soldier_r() << " ";
 	        if(best_action.get_action_type() == SOLDIER_MOVE)	cout << "M ";

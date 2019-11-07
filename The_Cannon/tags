@@ -1,0 +1,38 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+args	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        args = parser.parse_args()$/;"	v	language:Python	class:Server
+BuildServer	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def BuildServer(self,ip,port_no,num_clients):$/;"	m	language:Python	class:Server
+calculate_score	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def calculate_score(self, tA, tB, sA, sB, error_state):$/;"	m	language:Python	class:Game
+check_finished	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def check_finished(self):$/;"	m	language:Python	class:Game
+check_move_validity	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def check_move_validity(self):$/;"	m	language:Python	class:Game
+check_player_state	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def check_player_state(self):$/;"	m	language:Python	class:Game
+click_at	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def click_at(self, x, y) :$/;"	m	language:Python	class:Game
+CloseAllClients	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def CloseAllClients(self):$/;"	m	language:Python	class:Server
+CloseClient	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def CloseClient(self,client_id):$/;"	m	language:Python	class:Server
+create_index_html	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^def create_index_html(rows, cols, height, width):$/;"	f	language:Python
+display	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^display = {8: 600, 10: 750}$/;"	v	language:Python
+execute_move	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def execute_move(self, cmd) :$/;"	m	language:Python	class:Game
+execute_sequence	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def execute_sequence(self, moves):$/;"	m	language:Python	class:Game
+game	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	game = Game(8, 8, 'GUI')$/;"	v	language:Python	class:Game
+Game	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^class Game:$/;"	c	language:Python
+getNetworkTimer	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def getNetworkTimer(self):$/;"	m	language:Python	class:Server
+getValidMoves	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def getValidMoves(self):$/;"	m	language:Python	class:Game
+getValidSoldiers	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def getValidSoldiers(self):$/;"	m	language:Python	class:Game
+getValidTargets	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def getValidTargets(self):$/;"	m	language:Python	class:Game
+get_current_player	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def get_current_player(self):$/;"	m	language:Python	class:Game
+get_score	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def get_score(self, id, error_state = 0):$/;"	m	language:Python	class:Game
+local_Server	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        local_Server = Server()$/;"	v	language:Python	class:Server
+parser	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        parser = argparse.ArgumentParser(description = 'Cannon Server')$/;"	v	language:Python	class:Server
+PATH	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^PATH = os.path.dirname(os.path.abspath(__file__))$/;"	v	language:Python
+playCannon	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def playCannon(self,n,m,timelimit,client_0,client_1):$/;"	m	language:Python	class:Server
+RecvDataFromClient	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def RecvDataFromClient(self,client_id):$/;"	m	language:Python	class:Server
+render_template	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^def render_template(template_filename, context):$/;"	f	language:Python
+SendData2Client	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def SendData2Client(self,client_id,data):$/;"	m	language:Python	class:Server
+SendInitError2Clients	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def SendInitError2Clients(self):$/;"	m	language:Python	class:Server
+Server	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^class Server:$/;"	c	language:Python
+setLogFile	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def setLogFile(self, filename):$/;"	m	language:Python	class:Server
+setNetworkTimer	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def setNetworkTimer(self,Time_in_seconds):$/;"	m	language:Python	class:Server
+sign	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def sign(self, x):$/;"	m	language:Python	class:Game
+simulate	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def simulate(self, filename):$/;"	m	language:Python	class:Game
+TEMPLATE_ENVIRONMENT	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^TEMPLATE_ENVIRONMENT = Environment(autoescape = False, loader = FileSystemLoader(os.path.join(PATH, 'templates')), trim_blocks = False)$/;"	v	language:Python
+__init__	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/game.py	/^	def __init__(self, n, m, mode = 'CUI', time = 120):$/;"	m	language:Python	class:Game
+__init__	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/server.py	/^        def __init__(self):$/;"	m	language:Python	class:Server

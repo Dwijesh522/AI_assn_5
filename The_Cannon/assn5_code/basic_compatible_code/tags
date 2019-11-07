@@ -1,0 +1,144 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+action	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		action();$/;"	p	language:C++	class:action
+action	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		action(pair<int, int> cp, pair<int, int> fp, action_type action_t);$/;"	p	language:C++	class:action
+action	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^class action$/;"	c	language:C++
+action_by	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum{OUR_ACTION, OPPONENT_ACTION} action_by;$/;"	t	language:C++	typeref:enum:__anon1
+action_cost	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		float action_cost;$/;"	m	language:C++	class:action
+action_t	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		action_type action_t;$/;"	m	language:C++	class:action
+action_type	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum{CANNON_SHOT, SOLDIER_MOVE}action_type;$/;"	t	language:C++	typeref:enum:__anon2
+best_action_found	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		action best_action_found;$/;"	m	language:C++	class:board
+BLACK	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum {WHITE, BLACK} color;		\/\/ my_color represents, am I black or white.$/;"	e	language:C++	enum:__anon4
+BLACK_SOLDIER	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef	enum{BLACK_SOLDIER, WHITE_SOLDIER, BLACK_TOWNHALL, WHITE_TOWNHALL, NONE} cell_content;$/;"	e	language:C++	enum:__anon3
+black_soldiers	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<soldier> black_soldiers, white_soldiers;$/;"	m	language:C++	class:board
+BLACK_TOWNHALL	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef	enum{BLACK_SOLDIER, WHITE_SOLDIER, BLACK_TOWNHALL, WHITE_TOWNHALL, NONE} cell_content;$/;"	e	language:C++	enum:__anon3
+black_townhalls	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<townhall> black_townhalls, white_townhalls;$/;"	m	language:C++	class:board
+board	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^board::board(){}$/;"	f	language:C++	class:board
+board	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^board::board(color my_color, int r, int c, int soldiers_per_team)$/;"	f	language:C++	class:board
+board	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		board();$/;"	p	language:C++	class:board
+board	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		board(color turn, int r, int c, int soldiers_per_team);$/;"	p	language:C++	class:board
+board	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^class board$/;"	c	language:C++
+board_equals	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^bool board::board_equals(board &other)							\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/$/;"	f	language:C++	class:board
+board_equals	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		bool board_equals(board& other);$/;"	p	language:C++	class:board
+c	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int r, c, soldiers_per_team;$/;"	m	language:C++	class:board
+c	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int r, c;$/;"	m	language:C++	class:soldier
+c	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int r, c;$/;"	m	language:C++	class:townhall
+CANNON_SHOT	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum{CANNON_SHOT, SOLDIER_MOVE}action_type;$/;"	e	language:C++	enum:__anon2
+cell_content	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef	enum{BLACK_SOLDIER, WHITE_SOLDIER, BLACK_TOWNHALL, WHITE_TOWNHALL, NONE} cell_content;$/;"	t	language:C++	typeref:enum:__anon3
+color	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum {WHITE, BLACK} color;		\/\/ my_color represents, am I black or white.$/;"	t	language:C++	typeref:enum:__anon4
+current_pos	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		pair<int, int> current_pos;$/;"	m	language:C++	class:action
+custom_hash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		custom_hash();$/;"	p	language:C++	class:custom_hash
+custom_hash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		custom_hash(int r, int c);$/;"	p	language:C++	class:custom_hash
+custom_hash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^class custom_hash$/;"	c	language:C++
+custom_hash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/zobrist.cpp	/^custom_hash::custom_hash() {}$/;"	f	language:C++	class:custom_hash
+custom_hash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/zobrist.cpp	/^custom_hash::custom_hash(int r, int c)$/;"	f	language:C++	class:custom_hash
+dummy_utility_function	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^float board::dummy_utility_function()$/;"	f	language:C++	class:board
+dummy_utility_function	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		float dummy_utility_function();$/;"	p	language:C++	class:board
+eval_function	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^float board::eval_function()$/;"	f	language:C++	class:board
+eval_function	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		float eval_function();$/;"	p	language:C++	class:board
+find	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		pair<bool, action> find(long long hn, board *b1);$/;"	p	language:C++	class:transposition_table
+findhash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		long long findhash(board &a);$/;"	p	language:C++	class:custom_hash
+findhash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/zobrist.cpp	/^long long custom_hash::findhash(board &a)$/;"	f	language:C++	class:custom_hash
+future_pos	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		pair<int, int> future_pos;$/;"	m	language:C++	class:action
+get_action_cost	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		float get_action_cost();$/;"	p	language:C++	class:action
+get_action_type	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		action_type get_action_type();$/;"	p	language:C++	class:action
+get_best_action_found	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^action board::get_best_action_found()$/;"	f	language:C++	class:board
+get_best_action_found	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		action get_best_action_found();$/;"	p	language:C++	class:board
+get_c	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int get_c();$/;"	p	language:C++	class:soldier
+get_c	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int get_c();$/;"	p	language:C++	class:townhall
+get_cell	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^cell_content board::get_cell(int r, int c)$/;"	f	language:C++	class:board
+get_cell	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		cell_content get_cell(int r, int c);$/;"	p	language:C++	class:board
+get_current_pos	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		pair<int, int> get_current_pos();$/;"	p	language:C++	class:action
+get_future_pos	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		pair<int, int> get_future_pos();$/;"	p	language:C++	class:action
+get_grid	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^vector<vector<cell_content> > board::get_grid()$/;"	f	language:C++	class:board
+get_grid	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<vector<cell_content> > get_grid();$/;"	p	language:C++	class:board
+get_my_color	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^color board::get_my_color()$/;"	f	language:C++	class:board
+get_my_color	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		color get_my_color();$/;"	p	language:C++	class:board
+get_opponent_action	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^vector<action> board::get_opponent_action()$/;"	f	language:C++	class:board
+get_opponent_action	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<action> get_opponent_action();$/;"	p	language:C++	class:board
+get_possible_action	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^vector<action> board::get_possible_action()$/;"	f	language:C++	class:board
+get_possible_action	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<action> get_possible_action();$/;"	p	language:C++	class:board
+get_r	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int get_r();$/;"	p	language:C++	class:soldier
+get_r	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int get_r();$/;"	p	language:C++	class:townhall
+get_soldier_c	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int get_soldier_c();$/;"	p	language:C++	class:action
+get_soldier_r	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int get_soldier_r();$/;"	p	language:C++	class:action
+get_target_c	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int get_target_c();$/;"	p	language:C++	class:action
+get_target_r	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int get_target_r();$/;"	p	language:C++	class:action
+grid	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<vector<cell_content > > grid;$/;"	m	language:C++	class:board
+hash_fn	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		custom_hash hash_fn;$/;"	m	language:C++	class:transposition_table
+horizontal_cannons_diff	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int horizontal_cannons_diff, verticle_cannons_diff, right_diagonal_cannons_diff, left_diagonal_cannons_diff,$/;"	m	language:C++	class:board
+insert	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void insert(long long hn, board b);$/;"	p	language:C++	class:transposition_table
+left_diagonal_cannons_diff	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int horizontal_cannons_diff, verticle_cannons_diff, right_diagonal_cannons_diff, left_diagonal_cannons_diff,$/;"	m	language:C++	class:board
+lt	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		map<cell_content, int> lt;$/;"	m	language:C++	class:custom_hash
+main	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/main.cpp	/^int main()$/;"	f	language:C++
+mp	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		unordered_map<long long, board> mp;$/;"	m	language:C++	class:transposition_table
+my_color	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		color my_color;$/;"	m	language:C++	class:board
+new_utility_function	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^float board::new_utility_function(bool do_i_have_moves)$/;"	f	language:C++	class:board
+new_utility_function	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		float new_utility_function(bool);$/;"	p	language:C++	class:board
+next_hash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		long long next_hash(board &bo, long long prev_hash, action &a);$/;"	p	language:C++	class:custom_hash
+next_hash	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/zobrist.cpp	/^long long custom_hash::next_hash(board &bo, long long prev_hash, action &a)$/;"	f	language:C++	class:custom_hash
+NONE	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef	enum{BLACK_SOLDIER, WHITE_SOLDIER, BLACK_TOWNHALL, WHITE_TOWNHALL, NONE} cell_content;$/;"	e	language:C++	enum:__anon3
+OPPONENT_ACTION	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum{OUR_ACTION, OPPONENT_ACTION} action_by;$/;"	e	language:C++	enum:__anon1
+OUR_ACTION	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum{OUR_ACTION, OPPONENT_ACTION} action_by;$/;"	e	language:C++	enum:__anon1
+print_all_actions	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::print_all_actions(vector<action> possible_actions)$/;"	f	language:C++	class:board
+print_all_actions	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_all_actions(vector<action>);$/;"	p	language:C++	class:board
+print_black_soldiers	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::print_black_soldiers()$/;"	f	language:C++	class:board
+print_black_soldiers	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_black_soldiers();$/;"	p	language:C++	class:board
+print_black_townhalls	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::print_black_townhalls()$/;"	f	language:C++	class:board
+print_black_townhalls	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_black_townhalls();$/;"	p	language:C++	class:board
+print_board	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::print_board()$/;"	f	language:C++	class:board
+print_board	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_board();$/;"	p	language:C++	class:board
+print_explored_boards	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_explored_boards();$/;"	p	language:C++	class:transposition_table
+print_feature_values	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::print_feature_values()$/;"	f	language:C++	class:board
+print_feature_values	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_feature_values();$/;"	p	language:C++	class:board
+print_rand_grid	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_rand_grid();$/;"	p	language:C++	class:custom_hash
+print_rand_grid	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/zobrist.cpp	/^void custom_hash::print_rand_grid()$/;"	f	language:C++	class:custom_hash
+print_white_soldiers	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::print_white_soldiers()$/;"	f	language:C++	class:board
+print_white_soldiers	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_white_soldiers();$/;"	p	language:C++	class:board
+print_white_townhalls	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::print_white_townhalls()$/;"	f	language:C++	class:board
+print_white_townhalls	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void print_white_townhalls();$/;"	p	language:C++	class:board
+r	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int r, c, soldiers_per_team;$/;"	m	language:C++	class:board
+r	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int r, c;$/;"	m	language:C++	class:soldier
+r	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int r, c;$/;"	m	language:C++	class:townhall
+rand_grid	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<vector<long long>> rand_grid;$/;"	m	language:C++	class:custom_hash
+remove_black_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::remove_black_soldier(const int &r, const int &c)$/;"	f	language:C++	class:board
+remove_black_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void remove_black_soldier(const int &r, const int &c);$/;"	p	language:C++	class:board
+remove_black_townhall	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::remove_black_townhall(const int &r, const int &c)$/;"	f	language:C++	class:board
+remove_black_townhall	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void remove_black_townhall(const int &r, const int &c);$/;"	p	language:C++	class:board
+remove_white_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::remove_white_soldier(const int &r,const int &c)$/;"	f	language:C++	class:board
+remove_white_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void remove_white_soldier(const int &r, const int &c);$/;"	p	language:C++	class:board
+remove_white_townhall	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::remove_white_townhall(const int &r, const int &c)$/;"	f	language:C++	class:board
+remove_white_townhall	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void remove_white_townhall(const int &r, const int &c);$/;"	p	language:C++	class:board
+right_diagonal_cannons_diff	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int horizontal_cannons_diff, verticle_cannons_diff, right_diagonal_cannons_diff, left_diagonal_cannons_diff,$/;"	m	language:C++	class:board
+set_action_cost	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void set_action_cost(float cost);$/;"	p	language:C++	class:action
+set_best_action_found	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::set_best_action_found(action best_action)$/;"	f	language:C++	class:board
+set_best_action_found	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void set_best_action_found(action best_action);$/;"	p	language:C++	class:board
+set_r_c	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void set_r_c(int r, int c);$/;"	p	language:C++	class:soldier
+soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		soldier(int r, int c);$/;"	p	language:C++	class:soldier
+soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^class soldier$/;"	c	language:C++
+soldiers_per_team	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int r, c, soldiers_per_team;$/;"	m	language:C++	class:board
+soldier_kills_diff	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		    valid_moves_diff, soldier_kills_diff, townhall_kills_diff;$/;"	m	language:C++	class:board
+SOLDIER_MOVE	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum{CANNON_SHOT, SOLDIER_MOVE}action_type;$/;"	e	language:C++	enum:__anon2
+terminal_test	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^bool board::terminal_test(int depth, const int &cut_off_depth)$/;"	f	language:C++	class:board
+terminal_test	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		bool terminal_test(int depth, const int &cut_off_depth);$/;"	p	language:C++	class:board
+townhall	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		townhall(int r, int c);$/;"	p	language:C++	class:townhall
+townhall	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^class townhall$/;"	c	language:C++
+townhall_kills_diff	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		    valid_moves_diff, soldier_kills_diff, townhall_kills_diff;$/;"	m	language:C++	class:board
+transposition_table	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		transposition_table(int r, int c);$/;"	p	language:C++	class:transposition_table
+transposition_table	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^class transposition_table$/;"	c	language:C++
+update_black_feature_values	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^vector<action> board::update_black_feature_values()$/;"	f	language:C++	class:board
+update_black_feature_values	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<action> update_black_feature_values();$/;"	p	language:C++	class:board
+update_black_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::update_black_soldier(const int &old_r, const int &old_c, const int &new_r, const int &new_c)$/;"	f	language:C++	class:board
+update_black_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void update_black_soldier(const int &old_r, const int &old_c, const int &new_r, const int &new_c);$/;"	p	language:C++	class:board
+update_white_feature_values	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^vector<action> board::update_white_feature_values()$/;"	f	language:C++	class:board
+update_white_feature_values	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<action> update_white_feature_values();$/;"	p	language:C++	class:board
+update_white_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^void board::update_white_soldier(const int &old_r, const int &old_c, const int &new_r, const int &new_c)$/;"	f	language:C++	class:board
+update_white_soldier	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		void update_white_soldier(const int &old_r, const int &old_c, const int &new_r, const int &new_c);$/;"	p	language:C++	class:board
+utility_function	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/board.cpp	/^float board::utility_function(bool do_i_have_moves)$/;"	f	language:C++	class:board
+utility_function	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		float utility_function(bool);$/;"	p	language:C++	class:board
+valid_moves_diff	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		    valid_moves_diff, soldier_kills_diff, townhall_kills_diff;$/;"	m	language:C++	class:board
+verticle_cannons_diff	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		int horizontal_cannons_diff, verticle_cannons_diff, right_diagonal_cannons_diff, left_diagonal_cannons_diff,$/;"	m	language:C++	class:board
+WHITE	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef enum {WHITE, BLACK} color;		\/\/ my_color represents, am I black or white.$/;"	e	language:C++	enum:__anon4
+WHITE_SOLDIER	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef	enum{BLACK_SOLDIER, WHITE_SOLDIER, BLACK_TOWNHALL, WHITE_TOWNHALL, NONE} cell_content;$/;"	e	language:C++	enum:__anon3
+white_soldiers	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<soldier> black_soldiers, white_soldiers;$/;"	m	language:C++	class:board
+WHITE_TOWNHALL	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^typedef	enum{BLACK_SOLDIER, WHITE_SOLDIER, BLACK_TOWNHALL, WHITE_TOWNHALL, NONE} cell_content;$/;"	e	language:C++	enum:__anon3
+white_townhalls	/home/dwijesh/Documents/sem5/ai/assns/assn5/AI_assn_5/The_Cannon/assn5_code/classes.h	/^		vector<townhall> black_townhalls, white_townhalls;$/;"	m	language:C++	class:board

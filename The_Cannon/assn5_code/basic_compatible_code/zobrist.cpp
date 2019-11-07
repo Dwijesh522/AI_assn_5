@@ -7,7 +7,7 @@ using namespace std;
 // r = no of board cells, c = no of pieces = 4
 custom_hash::custom_hash(int r, int c)
 {
-	rand_grid.resize(r, vector<long long>(2, 0));
+	rand_grid.resize(r, vector<long long>(c, 0));
 	for (auto &i : rand_grid)
 		for (auto &j : i)
 			j = rand();
