@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 #include <vector>
 #include <map>
 #include <unordered_map>
@@ -6,10 +7,14 @@
 #include <assert.h>
 using namespace std;
 
-typedef enum{OUR_ACTION, OPPONENT_ACTION} action_by;
-typedef enum{CANNON_SHOT, SOLDIER_MOVE}action_type;
-typedef	enum{BLACK_SOLDIER, WHITE_SOLDIER, BLACK_TOWNHALL, WHITE_TOWNHALL, NONE} cell_content;
+typedef enum {OUR_ACTION, OPPONENT_ACTION} action_by;
+typedef enum {CANNON_SHOT, SOLDIER_MOVE}action_type;
+typedef	enum {BLACK_SOLDIER, WHITE_SOLDIER, BLACK_TOWNHALL, WHITE_TOWNHALL, NONE} cell_content;
 typedef enum {WHITE, BLACK} color;		// my_color represents, am I black or white.
+typedef enum {	I_KILLED_SOLDIER_POS, OPP_KILLED_SOLDIER_POS, I_KILLED_TOWNHALL, OPP_KILLED_TOWNHALL, I_KILLED_SOLDIER_NEG, OPP_KILLED_SOLDIER_NEG,
+		ME_ADDING_TOWNHALL_COVER, ME_ADDING_SOLDIER_COVER, 
+		ME_UNDER_CANNON_ATTACK, ME_UNDER_SOLDIER_ATTACK,
+		NO_EVENT} event_type;
 class soldier
 {
 	private:
@@ -62,7 +67,39 @@ class board
 		action best_action_found;
 		// following variables are introduced for eval function
 		int horizontal_cannons_diff, verticle_cannons_diff, right_diagonal_cannons_diff, left_diagonal_cannons_diff,
-		    valid_moves_diff, soldier_kills_diff, townhall_kills_diff;
+		    valid_moves_diff, soldier_kills_diff, townhall_kills_diff,
+		    our_soldiers_under_soldier_attack=0, our_soldiers_under_cannon_attack=0, our_townhall_covering_agents=0, our_soldier_covering_agents=0;
+		// weights used in the eval function
+		float our_soldiers_weight = 0,	
+		      enemy_soldiers_weight = 0,
+		      our_townhalls_weight = 0,
+		      enemy_townhalls_weight = 0,
+		      our_soldiers_under_soldier_attack_weight=0,
+		      our_soldiers_under_cannon_attack_weight=0,
+		      our_townhall_covering_agents_weight=0,
+		      our_soldier_covering_agents_weight=0;
+//		      soldiers_i_can_kill_weight=0,
+//		      soldiers_enemy_can_kill_weight=0,
+//		      townhalls_i_can_kill_weight=0,
+//		      townhalls_enemy_can_kill_weight=0;
+//		float our_soldiers_weight = 9,	
+//		      enemy_soldiers_weight = -10,
+//		      soldier_diff_weight = 0,
+//		      townhall_diff_weight = 100,
+//		      our_horizontal_cannons_weight = 1,
+//		      enemy_horizontal_cannons_weight = 0,
+//		      our_verticle_cannons_weight = 3,
+//		      enemy_verticle_cannons_weight = 0,
+//		      our_right_cannons_weight = 3.5,
+//		      enemy_right_cannons_weight = 0,
+//		      our_left_cannons_weight = 3.5,
+//		      enemy_left_cannons_weight = 0,
+//		      soldiers_i_can_kill_weight = 1,
+//		      soldiers_enemy_can_kill_weight = -1,
+//		      townhalls_i_can_kill = 50,
+//		      townhalls_enemy_can_kill = -90,
+//		      our_moves_weight = 6,
+//		      opp_moves_weight = 0;
 	public:
 		// complete initializatin of the board will be done here
 		board();
@@ -86,12 +123,19 @@ class board
 		bool terminal_test(int depth, const int &cut_off_depth);
 		float dummy_utility_function();
 		float eval_function();
+		float dynamic_eval_function();
 		float utility_function(bool);
 		float new_utility_function(bool);
 		vector<action> update_white_feature_values();
 		vector<action> update_black_feature_values();
+		void update_event_feature_values();
+		void update_event_feature_weights(event_type event);
+		void softmax_to_weights();
+		int get_number_of_rows();
+		int get_number_of_cols();
 		void print_all_actions(vector<action>);
 		void print_board();
+		void print_weights();
 		void print_feature_values();
 		void print_black_soldiers();
 		void print_white_soldiers();

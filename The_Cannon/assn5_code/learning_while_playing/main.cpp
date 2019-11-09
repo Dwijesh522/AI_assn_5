@@ -1,20 +1,19 @@
-#include<iostream>
+#include <iostream>
+#include <time.h>
 #include "classes.h"
 #include "functions.h"
 using namespace std;
 
 int main()
 {
+	srand(time(0));
 	//values fixed for assn 2.
 	int n = 8, m = 8, soldiers_per_team = 12, time_ms=0, time_spent_so_far_ms=0;
 	// read what is our player id
 	// 1 will make the first move
 	int player_id = 1, index=0, calibration_string_length=0;
 	string calibration="", temp_string;
-	cerr << "getting the mssg...\n";
 	getline(cin, calibration);
-	cerr << "got the message...\n";
-	cerr << "msg is: " << calibration << endl;
 	calibration_string_length = calibration.length();
 	while(calibration[index] != ' ')		{ temp_string += calibration[index]; index++;}
 	player_id = stoi(temp_string);
@@ -46,16 +45,18 @@ int main()
 
 	// initializing the board
 	srand(time(0));
-//	cout << "\n\n***********          initial board:        ***************\n";
 	board game = board(my_color, n, m, soldiers_per_team);
+	pair<board, event_type> game_event;
+	event_type event = NO_EVENT;
 	hash_val = zobrist_hashing.findhash(game);
-//	game.print_board();
-//	cout << endl;
-	// << add some wihile loop here  >>	
+
+	// if stagnant case occures then don't use history to anser
+	int stagnant_game_counter = 0, stagnant_game_threshold = 2;
+	bool make_different_move = false;
 
 	while(true)
 	{
-		time_point<system_clock> start, end;
+		time_point<system_clock> start = system_clock::now(), end;
 		// opponent will make a move.
 		// we are white.
 		if(not is_my_first_turn)
@@ -80,23 +81,26 @@ int main()
 			
 			action opponent_action = action(make_pair(opp_old_r, opp_old_c), make_pair(opp_new_r, opp_new_c), opp_action_t);
 			hash_val = zobrist_hashing.next_hash(game, hash_val, opponent_action);
-			game = result(game, opp_old_r, opp_old_c, opp_new_r, opp_new_c, opp_action_t, action_by_opponent);	// our_action := black_action
-			// leaf test
+			game_event = result(game, opp_old_r, opp_old_c, opp_new_r, opp_new_c, opp_action_t, action_by_opponent, my_color);	// our_action := black_action
+			game = game_event.first;
+			event = game_event.second;
+			 // leaf test
 			int cut_off_depth=3;
-			if(game.terminal_test(1, cut_off_depth))
-			{
-//				cout << "Your score is: " << game.utility_function() << endl;
-				break;
-			}
+			if(game.terminal_test(1, cut_off_depth))	break;
+			/////////////////////////////	updating eval function after a move	///////////////////////////////////
+			game.update_event_feature_weights(event);
+			game.print_weights();
+			print_event(event);
+			event = NO_EVENT;	
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		}
 		is_my_first_turn = false;
 		action best_action;
 		//////// Searching current state in transposition table
 		//// hash value is ready for current state
 		pair<bool, action> find_in_tt = explored_boards.find(hash_val, &game);
-		if(find_in_tt.first)
+		if(find_in_tt.first and stagnant_game_counter < stagnant_game_threshold)
 		{
-//			best_action = game.get_best_action_found();
 			best_action = find_in_tt.second;
 			// no need to search
 			cout << "S " << best_action.get_soldier_c() << " " << best_action.get_soldier_r() << " ";
@@ -109,23 +113,74 @@ int main()
 			duration<double> elapsed_seconds = end-start;
 			time_spent_so_far_ms += elapsed_seconds.count()*1000;
 			
-			game = result(game, best_action.get_soldier_r(), best_action.get_soldier_c(), best_action.get_target_r(), best_action.get_target_c(), best_action.get_action_type(), action_by_me);
+			game_event = result(	game, best_action.get_soldier_r(), best_action.get_soldier_c(), 
+						best_action.get_target_r(), best_action.get_target_c(), best_action.get_action_type(), action_by_me, my_color);
+			game = game_event.first;
+			stagnant_game_counter++;
 			continue;
 		}
-		
+		else
+		{
+			if(stagnant_game_counter >= stagnant_game_threshold)	make_different_move = true;	
+			stagnant_game_counter = 0;
+		}		
 		//  	Game duration: 
 		//    			|------- 30% ------|----------------- 40% -------------|--- 15% ---|-- 14% --|- 1% -|
 		//    	Time/move:	1500 ms			3000 ms				1000 ms	    500 ms    100 ms
 		//    	Just to make sure that time out does not occure due to us, introduced a very quick step in the last 1% of the game
 		if(time_ms - time_spent_so_far_ms >= (0.7)*time_ms)
-			best_action = minimax_decision(game, 1500);
+		{
+			if(make_different_move)	
+			{
+				cerr << " !!!  stagnant game condition  !!!\n";
+			       	best_action = minimax_decision(game, 4000, my_color);
+				if(best_action.get_action_type() == CANNON_SHOT)	best_action = minimax_decision(game, -1, my_color);
+				make_different_move = false;
+			}
+			else	best_action = minimax_decision(game, 1500, my_color);
+		}
 		else if(time_ms - time_spent_so_far_ms >= 0.3*time_ms)
-			best_action = minimax_decision(game, 3000);
+		{
+			if(make_different_move)	
+			{
+				cerr << " !!!  stagnant game condition  !!!\n";
+			       	best_action = minimax_decision(game, 5000, my_color);
+				if(best_action.get_action_type() == CANNON_SHOT)	best_action = minimax_decision(game, -1, my_color);
+				make_different_move = false;
+			}
+			else	best_action = minimax_decision(game, 3000, my_color);
+		}
 		else if(time_ms- time_spent_so_far_ms >= 0.15*time_ms)
-			best_action = minimax_decision(game, 1000);
+		{
+			if(make_different_move)	
+			{
+				cerr << " !!!  stagnant game condition  !!!\n";
+			       	best_action = minimax_decision(game, 5000, my_color);
+				if(best_action.get_action_type() == CANNON_SHOT)	best_action = minimax_decision(game, -1, my_color);
+				make_different_move = false;
+			}
+			else	best_action = minimax_decision(game, 1000, my_color);
+		}
 		else if(time_ms - time_spent_so_far_ms >= 0.01*time_ms)
-			best_action = minimax_decision(game, 500);
-		else	best_action = minimax_decision(game, 100);
+		{
+			if(make_different_move)	
+			{
+				cerr << " !!!  stagnant game condition  !!!\n";
+			       	best_action = minimax_decision(game, -1, my_color);
+				make_different_move = false;
+			}
+			else	best_action = minimax_decision(game, 500, my_color);
+		}
+		else	
+		{
+			if(make_different_move)	
+			{
+				cerr << " !!!  stagnant game condition  !!!\n";
+			       	best_action = minimax_decision(game, -1, my_color);
+				make_different_move = false;
+			}
+			else	best_action = minimax_decision(game, 100, my_color);
+		}
 		// printing the results
 		cout << "S " << best_action.get_soldier_c() << " " << best_action.get_soldier_r() << " ";
 	        if(best_action.get_action_type() == SOLDIER_MOVE)	cout << "M ";
@@ -135,6 +190,7 @@ int main()
 		// stopping our timer
 		end = system_clock::now();
 		duration<double> elapsed_seconds = end-start;
+
 		time_spent_so_far_ms += elapsed_seconds.count()*1000;
 		
 		// assigning best action found for this perticular board config
@@ -144,26 +200,21 @@ int main()
 		// updating the hash value
 		hash_val = zobrist_hashing.next_hash(game, hash_val, best_action);
 		// modifing the game board
-		game = result(game, best_action.get_soldier_r(), best_action.get_soldier_c(), 
+		game_event = result(game, best_action.get_soldier_r(), best_action.get_soldier_c(), 
 				best_action.get_target_r(), best_action.get_target_c(), 
-				best_action.get_action_type(), action_by_me);
+				best_action.get_action_type(), action_by_me, my_color);
+		game = game_event.first;
+		event = game_event.second;
 		// leaf test
 		int cut_off_depth = 3;
-		if(game.terminal_test(1, cut_off_depth))
-		{
-//			cout << "Your score is: " << game.utility_function() << endl;
-			break;
-		}
-		/////// only for checking ///////
-//		explored_boards.print_explored_boards();
-//		break;
-		/////// remove the above ////////
-//		game.print_board();
-//		cout << endl;
+		if(game.terminal_test(1, cut_off_depth))	break;
+		////////////////////////////	updating eval funciton after my ply	///////////////////////////
+		game.update_event_feature_weights(event);
+		game.print_weights();
+		print_event(event);
+		event = NO_EVENT;
+		///////////////////////////////////////////////////////////////////////////////////////////////////
 	}
-//	cout << "**********  final game state **********\n";
-//	game.print_board();
-//	cout << endl;
 	return 0;
 }
 

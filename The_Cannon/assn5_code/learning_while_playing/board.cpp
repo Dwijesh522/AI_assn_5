@@ -103,6 +103,15 @@ board::board(color my_color, int r, int c, int soldiers_per_team)
 		r = white_townhalls[i].get_r(), c = white_townhalls[i].get_c();
 		grid[r][c] = WHITE_TOWNHALL;
 	}
+	enemy_soldiers_weight = -1.129;
+	our_soldiers_weight = 1.699;
+	enemy_townhalls_weight = -5.3;
+	our_townhalls_weight = 13.1;
+	our_townhall_covering_agents_weight = 0.234;
+	our_soldier_covering_agents_weight = 0.05748;
+	our_soldiers_under_soldier_attack_weight = -0.34;
+	our_soldiers_under_cannon_attack_weight = -2.29;
+
 }
 vector<vector<cell_content> > board::get_grid()
 {
@@ -138,6 +147,14 @@ void board::set_best_action_found(action best_action)
 	best_action_found = action(	make_pair(best_action.get_soldier_r(), best_action.get_soldier_c()), 
 					make_pair(best_action.get_target_r(), best_action.get_target_c()), 
 					best_action.get_action_type());
+}
+int board::get_number_of_rows()
+{
+	return r;
+}
+int board::get_number_of_cols()
+{
+	return c;
 }
 void board::remove_black_soldier(const int &r, const int &c)
 {
@@ -205,6 +222,645 @@ void board::update_black_soldier(const int &old_r, const int &old_c, const int &
 			black_soldiers[i].set_r_c(new_r, new_c); 
 			break;
 		}	
+}
+void board::print_weights()
+{
+	cerr << enemy_soldiers_weight << " " << our_soldiers_weight << " " <<
+		enemy_townhalls_weight << " " << our_townhalls_weight << " " <<
+		our_townhall_covering_agents_weight << " " << our_soldier_covering_agents_weight << " " <<
+		our_soldiers_under_soldier_attack_weight << " " << our_soldiers_under_cannon_attack_weight << endl;
+}
+// this function modifies the weights such that they sum up to 1 using softmax function
+void board::softmax_to_weights()
+{
+	// denomenator
+	float sum = 	exp(enemy_soldiers_weight) + exp(our_soldiers_weight) + exp(enemy_townhalls_weight) + exp(our_townhalls_weight)+
+			exp(our_townhall_covering_agents_weight) + exp(our_soldier_covering_agents_weight) +
+			exp(our_soldiers_under_soldier_attack_weight) + exp(our_soldiers_under_cannon_attack_weight);
+	// modifing each of the weights
+	enemy_soldiers_weight = exp(enemy_soldiers_weight) / sum;
+	our_soldiers_weight = exp(our_soldiers_weight) / sum;
+	enemy_townhalls_weight = exp(enemy_townhalls_weight) / sum;
+	our_townhalls_weight = exp(our_townhalls_weight) / sum;
+	our_townhall_covering_agents_weight = exp(our_townhall_covering_agents_weight) / sum;
+	our_soldier_covering_agents_weight = exp(our_soldier_covering_agents_weight) / sum;
+	our_soldiers_under_soldier_attack_weight = exp(our_soldiers_under_soldier_attack_weight) / sum;
+	our_soldiers_under_cannon_attack_weight = exp(our_soldiers_under_cannon_attack_weight) / sum;
+}
+// this function updates the weights according to the event that has occured
+void board::update_event_feature_weights(event_type event)
+{
+	switch(event)
+	{
+		case I_KILLED_SOLDIER_POS:
+			enemy_soldiers_weight += (-0.01);
+//			softmax_to_weights();
+			break;
+		case OPP_KILLED_SOLDIER_POS:
+			our_soldiers_weight += (0.01);
+//			softmax_to_weights();
+			break;
+		case I_KILLED_SOLDIER_NEG:
+			// future work
+			break;
+		case OPP_KILLED_SOLDIER_NEG:
+			// future work
+			break;
+		case I_KILLED_TOWNHALL:
+			enemy_townhalls_weight += (-0.7);
+//			softmax_to_weights();
+			break;
+		case OPP_KILLED_TOWNHALL:
+			our_townhalls_weight += (0.7);
+//			softmax_to_weights();
+			break;
+		case ME_ADDING_TOWNHALL_COVER:
+			our_townhall_covering_agents_weight += (0.001);
+//			softmax_to_weights();
+			break;
+		case ME_ADDING_SOLDIER_COVER:
+			our_soldier_covering_agents_weight += (0.00008);
+//			softmax_to_weights();
+			break;
+		case ME_UNDER_CANNON_ATTACK:
+			our_soldiers_under_cannon_attack_weight += (-0.1);
+//			softmax_to_weights();
+			break;
+		case ME_UNDER_SOLDIER_ATTACK:
+			our_soldiers_under_soldier_attack_weight += (-0.02);
+//			softmax_to_weights();
+			break;
+		case NO_EVENT:
+			break;
+	}
+}
+// this function updates the following feature values
+// our_soldiers_under_soldier_attack
+// our_soldiers_under_cannon_attack
+// our_soldier_covering_agents
+// our_townhall_covering_agents
+void board::update_event_feature_values()
+{
+	our_soldiers_under_soldier_attack=0; our_soldiers_under_cannon_attack=0; our_soldier_covering_agents=0; our_townhall_covering_agents=0;
+	vector<soldier> our_soldiers;
+	if(my_color == BLACK)	our_soldiers = black_soldiers;
+	else			our_soldiers = white_soldiers;
+	int our_soldiers_size = our_soldiers.size(), target_r, target_c, board_rows = r, board_cols = c;
+	board old_board = *this;
+	// traversing from our soldiers
+	for(int i=0; i<our_soldiers_size; i++)
+	{
+		target_r = our_soldiers[i].get_r();
+		target_c = our_soldiers[i].get_c();
+		// checking in vicinity
+		// right
+		if(target_c+1 < board_cols)
+		{
+			cell_content cell_r = old_board.get_cell(target_r, target_c+1);
+			switch(cell_r)
+			{
+				case NONE:
+					break;
+				case WHITE_SOLDIER:
+					if(my_color == WHITE)	our_soldier_covering_agents++;
+					else			our_soldiers_under_soldier_attack++;
+					break;
+				case BLACK_SOLDIER:
+					if(my_color == WHITE)	our_soldiers_under_soldier_attack++;
+					else			our_soldier_covering_agents++;
+					break;
+				case WHITE_TOWNHALL:
+					if(my_color == WHITE)	our_townhall_covering_agents++;
+					break;
+				case BLACK_TOWNHALL:
+					if(my_color == BLACK)	our_townhall_covering_agents++;
+					break;
+			}
+		}
+		// upper_right
+		if(target_c+1 < board_cols and target_r-1>=0 )
+		{
+			cell_content cell_r = old_board.get_cell(target_r-1, target_c+1);
+			switch(cell_r)
+			{
+				case NONE:
+					break;
+				case WHITE_SOLDIER:
+					if(my_color == WHITE)	our_soldier_covering_agents++;
+					else			our_soldiers_under_soldier_attack++;
+					break;
+				case BLACK_SOLDIER:
+					if(my_color == WHITE)	our_soldiers_under_soldier_attack++;
+					else			our_soldier_covering_agents++;
+					break;
+				case WHITE_TOWNHALL:
+					if(my_color == WHITE)	our_townhall_covering_agents++;
+					break;
+				case BLACK_TOWNHALL:
+					if(my_color == BLACK)	our_townhall_covering_agents++;
+					break;
+			}
+		}
+		// up
+		if(target_r-1>=0 )
+		{
+			cell_content cell_r = old_board.get_cell(target_r-1, target_c);
+			switch(cell_r)
+			{
+				case NONE:
+					break;
+				case WHITE_SOLDIER:
+					if(my_color == WHITE)	our_soldier_covering_agents++;
+					else			our_soldiers_under_soldier_attack++;
+					break;
+				case BLACK_SOLDIER:
+					if(my_color == WHITE)	our_soldiers_under_soldier_attack++;
+					else			our_soldier_covering_agents++;
+					break;
+				case WHITE_TOWNHALL:
+					if(my_color == WHITE)	our_townhall_covering_agents++;
+					break;
+				case BLACK_TOWNHALL:
+					if(my_color == BLACK)	our_townhall_covering_agents++;
+					break;
+			}
+		}
+		// upper_left
+		if(target_r-1>=0 and target_c-1>=0)
+		{
+			cell_content cell_r = old_board.get_cell(target_r-1, target_c-1);
+			switch(cell_r)
+			{
+				case NONE:
+					break;
+				case WHITE_SOLDIER:
+					if(my_color == WHITE)	our_soldier_covering_agents++;
+					else			our_soldiers_under_soldier_attack++;
+					break;
+				case BLACK_SOLDIER:
+					if(my_color == WHITE)	our_soldiers_under_soldier_attack++;
+					else			our_soldier_covering_agents++;
+					break;
+				case WHITE_TOWNHALL:
+					if(my_color == WHITE)	our_townhall_covering_agents++;
+					break;
+				case BLACK_TOWNHALL:
+					if(my_color == BLACK)	our_townhall_covering_agents++;
+					break;
+			}
+		}
+		// left
+		if(target_c-1>=0)
+		{
+			cell_content cell_r = old_board.get_cell(target_r, target_c-1);
+			switch(cell_r)
+			{
+				case NONE:
+					break;
+				case WHITE_SOLDIER:
+					if(my_color == WHITE)	our_soldier_covering_agents++;
+					else			our_soldiers_under_soldier_attack++;
+					break;
+				case BLACK_SOLDIER:
+					if(my_color == WHITE)	our_soldiers_under_soldier_attack++;
+					else			our_soldier_covering_agents++;
+					break;
+				case WHITE_TOWNHALL:
+					if(my_color == WHITE)	our_townhall_covering_agents++;
+					break;
+				case BLACK_TOWNHALL:
+					if(my_color == BLACK)	our_townhall_covering_agents++;
+					break;
+			}
+		}
+		// bottom_left
+		if(target_r+1 < board_rows and target_c-1>=0)
+		{
+			cell_content cell_r = old_board.get_cell(target_r+1, target_c-1);
+			switch(cell_r)
+			{
+				case NONE:
+					break;
+				case WHITE_SOLDIER:
+					if(my_color == WHITE)	our_soldier_covering_agents++;
+					else			our_soldiers_under_soldier_attack++;
+					break;
+				case BLACK_SOLDIER:
+					if(my_color == WHITE)	our_soldiers_under_soldier_attack++;
+					else			our_soldier_covering_agents++;
+					break;
+				case WHITE_TOWNHALL:
+					if(my_color == WHITE)	our_townhall_covering_agents++;
+					break;
+				case BLACK_TOWNHALL:
+					if(my_color == BLACK)	our_townhall_covering_agents++;
+					break;
+			}
+		}
+		// bottom
+		if(target_r+1 < board_rows)
+		{
+			cell_content cell_r = old_board.get_cell(target_r+1, target_c);
+			switch(cell_r)
+			{
+				case NONE:
+					break;
+				case WHITE_SOLDIER:
+					if(my_color == WHITE)	our_soldier_covering_agents++;
+					else			our_soldiers_under_soldier_attack++;
+					break;
+				case BLACK_SOLDIER:
+					if(my_color == WHITE)	our_soldiers_under_soldier_attack++;
+					else			our_soldier_covering_agents++;
+					break;
+				case WHITE_TOWNHALL:
+					if(my_color == WHITE)	our_townhall_covering_agents++;
+					break;
+				case BLACK_TOWNHALL:
+					if(my_color == BLACK)	our_townhall_covering_agents++;
+					break;
+			}
+		}
+		// bottom_right
+		if(target_r+1 < board_rows and target_c+1 < board_cols)
+		{
+			cell_content cell_r = old_board.get_cell(target_r+1, target_c+1);
+			switch(cell_r)
+			{
+				case NONE:
+					break;
+				case WHITE_SOLDIER:
+					if(my_color == WHITE)	our_soldier_covering_agents++;
+					else			our_soldiers_under_soldier_attack++;
+					break;
+				case BLACK_SOLDIER:
+					if(my_color == WHITE)	our_soldiers_under_soldier_attack++;
+					else			our_soldier_covering_agents++;
+					break;
+				case WHITE_TOWNHALL:
+					if(my_color == WHITE)	our_townhall_covering_agents++;
+					break;
+				case BLACK_TOWNHALL:
+					if(my_color == BLACK)	our_townhall_covering_agents++;
+					break;
+			}
+		}
+		//// me_under_cannon_attack
+		// defining the two complete cannons
+		// upper_right
+		int r_offset2 = 1, r_offset3 = 2, c_offset2 = -1, c_offset3 = -2;
+		int cannon1_r = target_r-4, cannon1_c = target_c+4;
+		int cannon2_r = target_r-5, cannon2_c = target_c+5;
+		// nearer cannon exists
+		if(cannon1_r >= 0 and cannon1_c < board_cols)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// further cannon exists
+		if(cannon2_r >= 0 and cannon2_c < board_cols)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// up
+		r_offset2 = 1; r_offset3 = 2; c_offset2 = 0; c_offset3 = 0;
+		cannon1_r = target_r-4; cannon1_c = target_c;
+		cannon2_r = target_r-5; cannon2_c = target_c;
+		// nearer cannon exists
+		if(cannon1_r >= 0 and cannon1_c < board_cols)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// further cannon exists
+		if(cannon2_r >= 0 and cannon2_c < board_cols)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// upper_left
+		r_offset2 = 1; r_offset3 = 2; c_offset2 = 1; c_offset3 = 2;
+		cannon1_r = target_r-4; cannon1_c = target_c-4;
+		cannon2_r = target_r-5; cannon2_c = target_c-5;
+		// nearer cannon exists
+		if(cannon1_r >= 0 and cannon1_c >= 0)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// further cannon exists
+		if(cannon2_r >= 0 and cannon2_c >= 0 )
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// left
+		r_offset2 = 0; r_offset3 = 0; c_offset2 = 1; c_offset3 = 2;
+		cannon1_r = target_r; cannon1_c = target_c-4;
+		cannon2_r = target_r; cannon2_c = target_c-5;
+		// nearer cannon exists
+		if(cannon1_r >= 0 and cannon1_c >= 0)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// further cannon exists
+		if(cannon2_r >= 0 and cannon2_c >= 0 )
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// bottom_left
+		r_offset2 = -1; r_offset3 = -2; c_offset2 = 1; c_offset3 = 2;
+		cannon1_r = target_r+4; cannon1_c = target_c-4;
+		cannon2_r = target_r+5; cannon2_c = target_c-5;
+		// nearer cannon exists
+		if(cannon1_r < board_rows and cannon1_c >= 0)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// further cannon exists
+		if(cannon2_r < board_rows and cannon2_c >= 0 )
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// bottom
+		r_offset2 = -1; r_offset3 = -2; c_offset2 = 0; c_offset3 = 0;
+		cannon1_r = target_r+4; cannon1_c = target_c;
+		cannon2_r = target_r+5; cannon2_c = target_c;
+		// nearer cannon exists
+		if(cannon1_r < board_rows and cannon1_c >= 0)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// further cannon exists
+		if(cannon2_r < board_rows and cannon2_c >= 0 )
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// bottom_right
+		r_offset2 = -1; r_offset3 = -2; c_offset2 = -1; c_offset3 = -2;
+		cannon1_r = target_r+4; cannon1_c = target_c+4;
+		cannon2_r = target_r+5; cannon2_c = target_c+5;
+		// nearer cannon exists
+		if(cannon1_r < board_rows and cannon1_c < board_cols)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// further cannon exists
+		if(cannon2_r < board_rows and cannon2_c < board_cols)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// right
+		r_offset2 = 0; r_offset3 = 0; c_offset2 = -1; c_offset3 = -2;
+		cannon1_r = target_r; cannon1_c = target_c+4;
+		cannon2_r = target_r; cannon2_c = target_c+5;
+		// nearer cannon exists
+		if(cannon1_r < board_rows and cannon1_c < board_cols)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon1_r, cannon1_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon1_r + r_offset2, cannon1_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon1_r + r_offset3, cannon1_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+		// further cannon exists
+		if(cannon2_r < board_rows and cannon2_c < board_cols)
+		{
+			if(my_color == WHITE)
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == BLACK_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == BLACK_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == BLACK_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+			else
+			{
+				if(	old_board.get_cell(cannon2_r, cannon2_c) == WHITE_SOLDIER and 
+					old_board.get_cell(cannon2_r + r_offset2, cannon2_c + c_offset2) == WHITE_SOLDIER and
+					old_board.get_cell(cannon2_r + r_offset3, cannon2_c + c_offset3) == WHITE_SOLDIER
+				  )
+					our_soldiers_under_cannon_attack++;
+			}
+		}
+	}
+	our_soldier_covering_agents /= 2;
 }
 //returns all possible actions for a given board configuration
 ////////////////////////////////////////
@@ -1786,6 +2442,60 @@ float board::utility_function(bool do_i_have_moves)
 //	}
 	
 }
+
+float board::dynamic_eval_function()
+{
+	// for now imposing the constraint that don't use utility function. Incorporate utility function when normalization is done.
+	float score=0;
+	int our_soldiers, enemy_soldiers, our_townhalls, enemy_townhalls;
+	    // newly added variables
+//	    soldiers_i_can_kill, soldiers_enemy_can_kill, townhalls_i_can_kill, townhalls_enemy_can_kill;
+//	
+//	// modifing newely added variables
+//	if(my_color == BLACK)	update_black_feature_values();
+//	else			update_white_feature_values();
+//	// our things are ready
+//	soldiers_i_can_kill = (soldier_kills_diff);
+//	townhalls_i_can_kill = townhall_kills_diff;
+//	// modifing enemy things
+//	if(my_color == BLACK)	update_white_feature_values();
+//	else 			update_black_feature_values();
+//	soldiers_enemy_can_kill = soldiers_i_can_kill-soldier_kills_diff;
+//	townhalls_enemy_can_kill = townhalls_i_can_kill-townhall_kills_diff;
+
+
+	if(my_color==BLACK)	
+	{ 
+		our_soldiers = black_soldiers.size(); 
+		our_townhalls = black_townhalls.size();
+		enemy_soldiers = white_soldiers.size();
+		enemy_townhalls = white_townhalls.size();
+	}
+	else			
+	{ 
+		enemy_soldiers = black_soldiers.size(); 
+		enemy_townhalls = black_townhalls.size();
+		our_soldiers = white_soldiers.size();
+		our_townhalls = white_townhalls.size();
+	}
+	// update the event feature values for the given state
+	update_event_feature_values();
+	score = our_soldiers_weight * our_soldiers +
+		enemy_soldiers_weight * enemy_soldiers+
+		our_townhalls_weight * our_townhalls+
+		enemy_townhalls_weight * enemy_townhalls+
+		our_soldiers_under_soldier_attack_weight * our_soldiers_under_soldier_attack+
+		our_soldiers_under_cannon_attack_weight * our_soldiers_under_cannon_attack + 
+		our_townhall_covering_agents_weight * our_townhall_covering_agents+
+		our_soldier_covering_agents_weight * our_soldier_covering_agents;
+		// newly added weights
+//		soldiers_i_can_kill_weight * soldiers_i_can_kill + 
+//		soldiers_enemy_can_kill_weight * soldiers_enemy_can_kill + 
+//		townhalls_i_can_kill_weight * townhalls_i_can_kill + 
+//		townhalls_enemy_can_kill_weight * townhalls_enemy_can_kill;
+	return score;
+}
+
 float board::eval_function()
 {
 	
@@ -1869,38 +2579,6 @@ float board::eval_function()
 
 			((6 * our_moves.size()) / 40) +
 			(((0) * opp_moves.size()) / 40);
-		
-//		cerr << "ans is: " << ans << endl;
-//		cerr << "///////////////////////////////////////////////////////////////\n";
-//		cerr <<	((1 * our_soldiers) / 12) << " ";
-	//	cerr <<	((1 * enemy_soldiers) / 12) << " ";
-
-	//	cerr <<	((1 * soldier_diff) / 12) << " ";
-	//	cerr <<	((1 * townhall_diff) / 2) << " ";
-
-	//	cerr <<	((1 * our_horizontal_cannons) / 4) << " ";
-	//	cerr <<	(((1) * enemy_horizontal_cannons) / 4) <<  " ";
-
-	//	cerr <<	((1 * our_verticle_cannons) / 4) << " ";
-	//	cerr <<	(((1) * enemy_verticle_cannons) / 4) << " ";
-
-	//	cerr <<	((1 * our_right_cannons) / 4) << " ";
-	//	cerr <<	(((1) * enemy_right_cannons) / 4) << " ";
-
-	//	cerr <<	((1 * our_left_cannons) / 4) << " ";
-	//	cerr <<	(((1) * enemy_left_cannons) / 4) << " ";
-
-	//	cerr <<	((1 * soldiers_i_can_kill) / 12) <<" ";
-	//	cerr <<	(((1) * soldiers_enemy_can_kill) / 12) << " ";
-
-	//	cerr <<	((1 * townhalls_i_can_kill) / 4) << " ";
-	//	cerr <<	(((1) * townhalls_enemy_can_kill) / 4) << " ";
-
-	//	cerr <<	((1 * our_moves.size()) / 40) << " ";
-	//	cerr <<	(((1) * opp_moves.size()) / 40) << endl;
-	//	cerr << "///////////////////////////////////////////////////////////////\n";
-//	print_board();
-
 	return ans;
 }
 
@@ -1909,6 +2587,11 @@ float board::eval_function()
 ///////////// equivalent to ////////////
 //////// get_black_actions  ////////////
 ////////////////////////////////////////
+// additionally targeting the following variables:
+// our_soldier_under_soldier_attack	: inferred from opp moves	related variable: soldier_kills_diff
+// our_soldier_under_cannon_attack	: inferred from opp moves	related variable: soldier_kills_diff
+// our_townhall_covering_agents		: inferred from our moves
+// our_soldier_covering_agents		: inferred from our moves
 vector<action> board::update_black_feature_values()
 {
 	vector<action> possible_actions;

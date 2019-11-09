@@ -23,10 +23,10 @@ using namespace std;
 
 //float max_value(board state, int depth);
 //float min_value(board state, int depth)
-float max_value(board state, int depth, const int &cut_off_depth, float alpha, float beta, time_point<system_clock> &start_time_point, int time_per_move); 
+float max_value(board state, int depth, const int &cut_off_depth, float alpha, float beta, time_point<system_clock> &start_time_point, int time_per_move, color my_color); 
 // min_value and max_value are interdependent
 
-float min_value(board state, int depth, const int &cut_off_depth, float alpha, float beta, time_point<system_clock> &start_time_point, int time_per_move)
+float min_value(board state, int depth, const int &cut_off_depth, float alpha, float beta, time_point<system_clock> &start_time_point, int time_per_move, color my_color)
 {
 	try
 	{
@@ -37,7 +37,8 @@ float min_value(board state, int depth, const int &cut_off_depth, float alpha, f
 		{
 //			state.update_white_feature_values();
 //			state.update_black_feature_values();
-			return state.eval_function();
+//			return state.eval_function();
+			return state.dynamic_eval_function();
 		}
 		else
 		{
@@ -55,8 +56,8 @@ float min_value(board state, int depth, const int &cut_off_depth, float alpha, f
 			{
 	    			v = min(v, max_value(result(state, move.get_soldier_r(), move.get_soldier_c(), 
 						move.get_target_r(), move.get_target_c(), 
-						move.get_action_type(), action_by_opponent),
-						depth+1, cut_off_depth, alpha, beta, start_time_point, time_per_move));
+						move.get_action_type(), action_by_opponent, my_color).first,
+						depth+1, cut_off_depth, alpha, beta, start_time_point, time_per_move, my_color));
 				if (v <= alpha)	return v;
 				beta = min(beta, v);
 			}
@@ -70,7 +71,7 @@ float min_value(board state, int depth, const int &cut_off_depth, float alpha, f
 }
 
 //float max_value(board state, int depth)
-float max_value(board state, int depth, const int &cut_off_depth, float alpha, float beta, time_point<system_clock> &start_time_point, int time_per_move)
+float max_value(board state, int depth, const int &cut_off_depth, float alpha, float beta, time_point<system_clock> &start_time_point, int time_per_move, color my_color)
 {
     try
     {
@@ -81,7 +82,8 @@ float max_value(board state, int depth, const int &cut_off_depth, float alpha, f
 	    {
 //		state.update_white_feature_values();
 //		state.update_black_feature_values();
-		return state.eval_function();
+//		return state.eval_function();
+		return state.dynamic_eval_function();
 	    }
 	    else
 	    {
@@ -101,8 +103,8 @@ float max_value(board state, int depth, const int &cut_off_depth, float alpha, f
 		{
 		    v = max(v, min_value(result	(state,move.get_soldier_r(), move.get_soldier_c(), 
 						move.get_target_r(), move.get_target_c(), 
-						move.get_action_type(), action_by_me), 
-						depth+1, cut_off_depth, alpha, beta, start_time_point, time_per_move));
+						move.get_action_type(), action_by_me, my_color).first, 
+						depth+1, cut_off_depth, alpha, beta, start_time_point, time_per_move, my_color));
 		    if (v >= beta)	return v;
 		    alpha = max(alpha, v);
 		}
@@ -118,7 +120,7 @@ bool compare_decr_cost(action &a1, action &a2)
 {
 	return a1.get_action_cost() > a2.get_action_cost();
 }
-action minimax_decision(board root_state, int time_per_move)
+action minimax_decision(board root_state, int time_per_move, color my_color)
 {
 	// getting the start time
 	time_point<system_clock> start;
@@ -132,6 +134,17 @@ action minimax_decision(board root_state, int time_per_move)
 
 
 	action best = moves_possible[0], move;
+
+	// if time_per_move is negative then return random move
+	if(time_per_move < 0)
+	{
+		while(true)
+		{
+			int random_index = rand() % (moves_possible.size());
+			if(moves_possible[random_index].get_action_type() != CANNON_SHOT)	return moves_possible[random_index];
+		}
+	}
+
 	int moves_possible_size = moves_possible.size(), cut_off_depth = 2;
 	float v = -1, i=0;
 	// if time has not elapsed
@@ -146,8 +159,8 @@ action minimax_decision(board root_state, int time_per_move)
 			{
 				move = moves_possible[i];
 				float bound = min_value(result(root_state, move.get_soldier_r(), move.get_soldier_c(), 
-							move.get_target_r(), move.get_target_c(), move.get_action_type(), action_by_me),
-							1, cut_off_depth, -INFINITY, INFINITY, start, time_per_move);
+							move.get_target_r(), move.get_target_c(), move.get_action_type(), action_by_me, my_color).first,
+							1, cut_off_depth, -INFINITY, INFINITY, start, time_per_move, my_color);
 				moves_possible[i].set_action_cost(bound);
 
 				if (v <= bound) //WARNING: NO ORDERING OF MOVES WITH SAME VALUE
