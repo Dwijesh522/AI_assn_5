@@ -106,15 +106,6 @@ board::board(color my_color, int r, int c, int soldiers_per_team)
 		r = white_townhalls[i].get_r(), c = white_townhalls[i].get_c();
 		grid[r][c] = WHITE_TOWNHALL;
 	}
-	// enemy_soldiers_weight = -1.169;
-	// our_soldiers_weight = 1.769;
-	// enemy_townhalls_weight = -50.3;
-	// our_townhalls_weight = 13.8;
-	// our_townhall_covering_agents_weight = 0.242;
-	// our_soldier_covering_agents_weight = 0.05884;
-	// our_soldiers_under_soldier_attack_weight = -0.34;
-	// our_soldiers_under_cannon_attack_weight = -2.59;
-	
 	enemy_soldiers_weight = -3.419;
 	our_soldiers_weight = 2.769;
 	enemy_townhalls_weight = -20.6;

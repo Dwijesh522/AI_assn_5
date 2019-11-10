@@ -41,48 +41,17 @@ int main()
 
 	transposition_table explored_boards = transposition_table(n*m, 4);
 	custom_hash zobrist_hashing = custom_hash(n*m, 4);
-	// states will be stored after i make a move
-	transposition_table visited_states = transposition_table(n*m, 4);
 	long long hash_val;
 
 	// initializing the board
 	srand(time(0));
 	board game = board(my_color, n, m, soldiers_per_team);
-
-	///////////////////////// deleteThis part while submitting	///////////////////////
-//	fstream myfile;
-//	myfile.open("weights.txt");
-//	if (myfile.is_open())
-//	{
-//		string line = "";
-//		float w1, w2, w3, w4, w5, w6, w7, w8;
-//		getline (myfile,line);
-//		w1 = stof(line);
-//		getline (myfile,line);
-//		w2 = stof(line);
-//		getline (myfile,line);
-//		w3 = stof(line);
-//		getline (myfile,line);
-//		w4 = stof(line);
-//		getline (myfile,line);
-//		w5 = stof(line);
-//		getline (myfile,line);
-//		w6 = stof(line);
-//		getline (myfile,line);
-//		w7 = stof(line);
-//		getline (myfile,line);
-//		w8 = stof(line);
-//		game.init_weights(w1, w2, w3, w4, w5, w6, w7, w8);
-//	    	myfile.close();
-//	}
-//	else	cerr << "unable to open the file.\n";
-	//////////////////////////////////////////////////////////////////////////////////////
-
 	pair<board, event_type> game_event;
 	event_type event = NO_EVENT;
 	hash_val = zobrist_hashing.findhash(game);
 
 	// if stagnant case occures then don't use history to anser
+	int stagnant_game_counter = 0, stagnant_game_threshold = 1;
 	bool make_different_move = false;
 
 	while(true)
@@ -120,30 +89,19 @@ int main()
 			if(game.terminal_test(1, cut_off_depth))	break;
 			/////////////////////////////	updating eval function after a move	///////////////////////////////////
 			game.update_event_feature_weights(event);
-//			game.print_weights();
-//			print_event(event);
+			game.print_weights();
+			print_event(event);
 			event = NO_EVENT;	
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		}
 		is_my_first_turn = false;
 		action best_action;
-		
-		// take a decision whether it is a stagnant game or not
-		// if the game is seen for 2 times
-		if(visited_states.get_freq(hash_val, &game) == 2)
-		{
-			cerr << " !!! stagnant move !!!\n";
-			make_different_move = true;
-		}
-
 
 		//////// Searching current state in transposition table
 		//// hash value is ready for current state
 		pair<bool, action> find_in_tt = explored_boards.find(hash_val, &game);
-		if(find_in_tt.first and (not make_different_move))
+		if(find_in_tt.first and stagnant_game_counter < stagnant_game_threshold)
 		{
-			// take a decision whether it is a stagnant game or not
-			// if the game is seen for 2 times
 			best_action = find_in_tt.second;
 			hash_val = zobrist_hashing.next_hash(game, hash_val, best_action);
 			// no need to search
@@ -160,11 +118,15 @@ int main()
 			game_event = result(	game, best_action.get_soldier_r(), best_action.get_soldier_c(), 
 						best_action.get_target_r(), best_action.get_target_c(), best_action.get_action_type(), action_by_me, my_color);
 			game = game_event.first;
-			if(visited_states.find(hash_val, &game).first)	{ visited_states.add_freq(hash_val, &game);}
-			else						visited_states.insert(hash_val, game);
+			stagnant_game_counter++;
+			cerr << " !!! state alredy stored  !!!\n";
 			continue;
-		}	
-
+		}
+		else
+		{
+			if(stagnant_game_counter >= stagnant_game_threshold)	make_different_move = true;	
+			stagnant_game_counter = 0;
+		}		
 		//  	Game duration: 
 		//    			|------- 30% ------|----------------- 40% -------------|--- 15% ---|-- 14% --|- 1% -|
 		//    	Time/move:	1500 ms			3000 ms				1000 ms	    500 ms    100 ms
@@ -173,6 +135,7 @@ int main()
 		{
 			if(make_different_move)	
 			{
+				cerr << " !!!  stagnant game condition  !!!\n";
 			       	best_action = minimax_decision(game, 4000, my_color);
 				if(best_action.get_action_type() == CANNON_SHOT)	best_action = minimax_decision(game, -1, my_color);
 				make_different_move = false;
@@ -183,6 +146,7 @@ int main()
 		{
 			if(make_different_move)	
 			{
+				cerr << " !!!  stagnant game condition  !!!\n";
 			       	best_action = minimax_decision(game, 5000, my_color);
 				if(best_action.get_action_type() == CANNON_SHOT)	best_action = minimax_decision(game, -1, my_color);
 				make_different_move = false;
@@ -193,6 +157,7 @@ int main()
 		{
 			if(make_different_move)	
 			{
+				cerr << " !!!  stagnant game condition  !!!\n";
 			       	best_action = minimax_decision(game, 5000, my_color);
 				if(best_action.get_action_type() == CANNON_SHOT)	best_action = minimax_decision(game, -1, my_color);
 				make_different_move = false;
@@ -203,6 +168,7 @@ int main()
 		{
 			if(make_different_move)	
 			{
+				cerr << " !!!  stagnant game condition  !!!\n";
 			       	best_action = minimax_decision(game, -1, my_color);
 				make_different_move = false;
 			}
@@ -212,6 +178,7 @@ int main()
 		{
 			if(make_different_move)	
 			{
+				cerr << " !!!  stagnant game condition  !!!\n";
 			       	best_action = minimax_decision(game, -1, my_color);
 				make_different_move = false;
 			}
@@ -246,12 +213,10 @@ int main()
 		if(game.terminal_test(1, cut_off_depth))	break;
 		////////////////////////////	updating eval funciton after my ply	///////////////////////////
 		game.update_event_feature_weights(event);
-//		game.print_weights();
-//		print_event(event);
+		game.print_weights();
+		print_event(event);
 		event = NO_EVENT;
 		///////////////////////////////////////////////////////////////////////////////////////////////////
-		if(visited_states.find(hash_val, &game).first)	{ visited_states.add_freq(hash_val, &game);}
-		else						visited_states.insert(hash_val, game);
 	}
 	return 0;
 }

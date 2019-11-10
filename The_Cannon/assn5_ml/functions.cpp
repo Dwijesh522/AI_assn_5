@@ -795,7 +795,6 @@ pair<board, event_type> result(board &old_board, const int &soldier_r, const int
 					break;
 			}
 			break;
-	}
-	new_board.init_freq();	
+	}	
 	return make_pair(new_board, event);
 }

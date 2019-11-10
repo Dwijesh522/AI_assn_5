@@ -1,5 +1,4 @@
 #pragma once
-#include <fstream>
 #include <cmath>
 #include <vector>
 #include <map>
@@ -66,7 +65,6 @@ class board
 		vector<vector<cell_content > > grid;
 		int r, c, soldiers_per_team;
 		action best_action_found;
-		int freq;
 		// following variables are introduced for eval function
 		int horizontal_cannons_diff, verticle_cannons_diff, right_diagonal_cannons_diff, left_diagonal_cannons_diff,
 		    valid_moves_diff, soldier_kills_diff, townhall_kills_diff,
@@ -135,10 +133,6 @@ class board
 		void softmax_to_weights();
 		int get_number_of_rows();
 		int get_number_of_cols();
-		void add_freq();
-		int get_freq();
-		void init_freq();
-		void init_weights(float, float, float, float, float, float, float, float);
 		void print_all_actions(vector<action>);
 		void print_board();
 		void print_weights();
@@ -169,8 +163,5 @@ class transposition_table
 		transposition_table(int r, int c);
 		void insert(long long hn, board b);
 		pair<bool, action> find(long long hn, board *b1);
-		pair<bool, board> find_stagnant(long long hn, board *b1);
-		void add_freq(long long hn, board *b1);
-		int get_freq(long long hn, board *b1);
 		void print_explored_boards();
 };

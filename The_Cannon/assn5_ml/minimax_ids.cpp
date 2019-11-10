@@ -6,8 +6,6 @@
 #include <exception>
 using namespace std;
 
-const float ALPHA = 0.001;
-
 // assumption - board result(board& s, const int soldier_r, const int soldier_c, const int target_r, const int target_c, action_type action_t, action_by whose_action)
 //            - vector<actions> get_possible_action(board s)
 //            - boolean terminal_test(board s)
@@ -60,10 +58,10 @@ float min_value(board state, int depth, const int &cut_off_depth, float alpha, f
 						move.get_target_r(), move.get_target_c(), 
 						move.get_action_type(), action_by_opponent, my_color).first,
 						depth+1, cut_off_depth, alpha, beta, start_time_point, time_per_move, my_color));
-				if (v <= alpha)	return v - ALPHA;
+				if (v <= alpha)	return v;
 				beta = min(beta, v);
 			}
-			return v - ALPHA;
+			return v;
 		}
 	}
 	catch(exception e)
@@ -107,10 +105,10 @@ float max_value(board state, int depth, const int &cut_off_depth, float alpha, f
 						move.get_target_r(), move.get_target_c(), 
 						move.get_action_type(), action_by_me, my_color).first, 
 						depth+1, cut_off_depth, alpha, beta, start_time_point, time_per_move, my_color));
-		    if (v >= beta)	return v - ALPHA;
+		    if (v >= beta)	return v;
 		    alpha = max(alpha, v);
 		}
-		return v - ALPHA;
+		return v;
 	    }
     }
     catch(exception e)

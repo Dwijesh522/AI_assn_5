@@ -1,0 +1,10 @@
+('ERROR : EITHER FILE ', 'run.sh', ' DOES NOT EXIST')
+('OR THE EXECUTION COMMAND TO RUN THE FILE ', 'sh', ' IS INCORRECT')
+***********************************
+
+-> You are player 2
+-> You are alloted a time of 2s
+
+***********************************
+
+ERROR : FAILED TO SEND DATA TO PROCESS

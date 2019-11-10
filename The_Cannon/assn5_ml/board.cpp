@@ -6,8 +6,6 @@
 //#include<fstream>
 using namespace std;
 
-const float BETA = 1.0;
-
 board::board(){}
 board::board(color my_color, int r, int c, int soldiers_per_team)
 {
@@ -20,7 +18,6 @@ board::board(color my_color, int r, int c, int soldiers_per_team)
 	this->r = r;
 	this->c = c;
 	this->soldiers_per_team = soldiers_per_team;
-	this->freq = 1;
 	int soldiers_in_coloumn = soldiers_per_team/(c/2);
 	// filling up the first row
 	vector<cell_content> row_of_grid;
@@ -106,37 +103,16 @@ board::board(color my_color, int r, int c, int soldiers_per_team)
 		r = white_townhalls[i].get_r(), c = white_townhalls[i].get_c();
 		grid[r][c] = WHITE_TOWNHALL;
 	}
-	// enemy_soldiers_weight = -1.169;
-	// our_soldiers_weight = 1.769;
-	// enemy_townhalls_weight = -50.3;
-	// our_townhalls_weight = 13.8;
-	// our_townhall_covering_agents_weight = 0.242;
-	// our_soldier_covering_agents_weight = 0.05884;
-	// our_soldiers_under_soldier_attack_weight = -0.34;
-	// our_soldiers_under_cannon_attack_weight = -2.59;
-	
-	enemy_soldiers_weight = -3.419;
-	our_soldiers_weight = 2.769;
-	enemy_townhalls_weight = -20.6;
-	our_townhalls_weight = 52;
-	our_townhall_covering_agents_weight = 0.272;
-	our_soldier_covering_agents_weight = 0.0750797;
-	our_soldiers_under_soldier_attack_weight = -0.6;
-	our_soldiers_under_cannon_attack_weight = -2.99;
+	enemy_soldiers_weight = -1.129;
+	our_soldiers_weight = 1.699;
+	enemy_townhalls_weight = -5.3;
+	our_townhalls_weight = 13.1;
+	our_townhall_covering_agents_weight = 0.234;
+	our_soldier_covering_agents_weight = 0.05748;
+	our_soldiers_under_soldier_attack_weight = -0.34;
+	our_soldiers_under_cannon_attack_weight = -2.29;
 
 }
-//void board::init_weights(float w1, float w2, float w3, float w4, float w5, float w6, float w7, float w8 )
-//{
-//	cerr << "initializing the weights: " << w1<<" "<< w2 <<" "<< w3 <<" "<< w4 <<" "<< w5 <<" "<< w6 <<" "<< w7 <<" "<< w8 <<" "<< endl; 
-//	enemy_soldiers_weight = w1;
-//	our_soldiers_weight = w2;
-//	enemy_townhalls_weight = w3;
-//	our_townhalls_weight = w4;
-//	our_townhall_covering_agents_weight = w5;
-//	our_soldier_covering_agents_weight = w6;
-//	our_soldiers_under_soldier_attack_weight = w7;
-//	our_soldiers_under_cannon_attack_weight = w8;
-//}
 vector<vector<cell_content> > board::get_grid()
 {
 	return grid;
@@ -153,18 +129,6 @@ bool board::board_equals(board &other)							///////////////////////////////////
 		}
 	}
 	return true;
-}
-void board::add_freq()
-{
-	freq++;
-}
-int board::get_freq()
-{
-	return freq;
-}
-void board::init_freq()
-{
-	freq = 1;
 }
 cell_content board::get_cell(int r, int c)
 {
@@ -261,17 +225,6 @@ void board::update_black_soldier(const int &old_r, const int &old_c, const int &
 }
 void board::print_weights()
 {
-	fstream myfile;
-	myfile.open("weights.txt");
-	if(myfile.is_open())
-	{
-		myfile << enemy_soldiers_weight << "\n" << our_soldiers_weight << "\n" <<
-		enemy_townhalls_weight << "\n" << our_townhalls_weight << "\n" <<
-		our_townhall_covering_agents_weight << "\n" << our_soldier_covering_agents_weight << "\n" <<
-		our_soldiers_under_soldier_attack_weight << "\n" << our_soldiers_under_cannon_attack_weight << endl;
-		myfile.close();
-	}
-	else	cerr << "file not opened\n";	
 	cerr << enemy_soldiers_weight << " " << our_soldiers_weight << " " <<
 		enemy_townhalls_weight << " " << our_townhalls_weight << " " <<
 		our_townhall_covering_agents_weight << " " << our_soldier_covering_agents_weight << " " <<
@@ -300,7 +253,7 @@ void board::update_event_feature_weights(event_type event)
 	switch(event)
 	{
 		case I_KILLED_SOLDIER_POS:
-			enemy_soldiers_weight += (-0.05);
+			enemy_soldiers_weight += (-0.01);
 //			softmax_to_weights();
 			break;
 		case OPP_KILLED_SOLDIER_POS:
@@ -314,11 +267,11 @@ void board::update_event_feature_weights(event_type event)
 			// future work
 			break;
 		case I_KILLED_TOWNHALL:
-			enemy_townhalls_weight += (-3.2);
+			enemy_townhalls_weight += (-0.7);
 //			softmax_to_weights();
 			break;
 		case OPP_KILLED_TOWNHALL:
-			our_townhalls_weight += (2.0);
+			our_townhalls_weight += (0.7);
 //			softmax_to_weights();
 			break;
 		case ME_ADDING_TOWNHALL_COVER:
@@ -2496,20 +2449,19 @@ float board::dynamic_eval_function()
 	float score=0;
 	int our_soldiers, enemy_soldiers, our_townhalls, enemy_townhalls;
 	    // newly added variables
-
-	int soldiers_i_can_kill, soldiers_enemy_can_kill, townhalls_i_can_kill, townhalls_enemy_can_kill;
-	
-	// modifing newely added variables
-	if(my_color == BLACK)	update_black_feature_values();
-	else			update_white_feature_values();
-	// our things are ready
-	soldiers_i_can_kill = (soldier_kills_diff);
-	townhalls_i_can_kill = townhall_kills_diff;
-	// modifing enemy things
-	if(my_color == BLACK)	update_white_feature_values();
-	else 			update_black_feature_values();
-	soldiers_enemy_can_kill = soldiers_i_can_kill-soldier_kills_diff;
-	townhalls_enemy_can_kill = townhalls_i_can_kill-townhall_kills_diff;
+//	    soldiers_i_can_kill, soldiers_enemy_can_kill, townhalls_i_can_kill, townhalls_enemy_can_kill;
+//	
+//	// modifing newely added variables
+//	if(my_color == BLACK)	update_black_feature_values();
+//	else			update_white_feature_values();
+//	// our things are ready
+//	soldiers_i_can_kill = (soldier_kills_diff);
+//	townhalls_i_can_kill = townhall_kills_diff;
+//	// modifing enemy things
+//	if(my_color == BLACK)	update_white_feature_values();
+//	else 			update_black_feature_values();
+//	soldiers_enemy_can_kill = soldiers_i_can_kill-soldier_kills_diff;
+//	townhalls_enemy_can_kill = townhalls_i_can_kill-townhall_kills_diff;
 
 
 	if(my_color==BLACK)	
@@ -2535,13 +2487,7 @@ float board::dynamic_eval_function()
 		our_soldiers_under_soldier_attack_weight * our_soldiers_under_soldier_attack+
 		our_soldiers_under_cannon_attack_weight * our_soldiers_under_cannon_attack + 
 		our_townhall_covering_agents_weight * our_townhall_covering_agents+
-		our_soldier_covering_agents_weight * our_soldier_covering_agents+
-	//	0.2 * soldiers_i_can_kill+
-		-20 * (enemy_townhalls - our_townhalls);
-		 //* soldiers_enemy_can_kill+
-	//	100 * townhalls_i_can_kill+
-	//	(-100) * townhalls_enemy_can_kill;
-
+		our_soldier_covering_agents_weight * our_soldier_covering_agents;
 		// newly added weights
 //		soldiers_i_can_kill_weight * soldiers_i_can_kill + 
 //		soldiers_enemy_can_kill_weight * soldiers_enemy_can_kill + 

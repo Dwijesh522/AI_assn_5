@@ -30,28 +30,6 @@ pair<bool, action> transposition_table::find(long long hn, board *b1)
 	}
 	else					return make_pair(false, b1->get_best_action_found());
 }
-pair<bool, board> transposition_table::find_stagnant(long long hn, board *b1)
-{
-	auto it = mp.find(hn);
-	if (it != mp.end())
-	{
-		board b2 = mp[hn];
-		if (b1->board_equals(b2))	return make_pair(true, b2);
-		else				return make_pair(false, b2);
-	}
-	else					return make_pair(false, *b1);
-}
-int transposition_table::get_freq(long long hn, board *b1)
-{
-	auto it = mp.find(hn);
-	if (it != mp.end() and b1->board_equals(it->second))	return it->second.get_freq();
-	else							return 0;
-}
-void transposition_table::add_freq(long long hn, board *b1)
-{
-	auto it = mp.find(hn);
-	if (it != mp.end())			it->second.add_freq();
-}
 void transposition_table::print_explored_boards()
 {
 	for(auto i: mp)

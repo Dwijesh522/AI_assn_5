@@ -10,13 +10,12 @@ import json
 import math
 import numpy as np
 
-
 from multiset import Multiset
 from selenium import webdriver
 from jinja2 import Environment, FileSystemLoader
 from selenium.webdriver.chrome.options import Options
 
-display = {8: 600, 10: 750}
+display = {8: 480, 10: 600}
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_ENVIRONMENT = Environment(autoescape = False, loader = FileSystemLoader(os.path.join(PATH, 'templates')), trim_blocks = False)
@@ -51,9 +50,9 @@ class Game:
 
 		options = Options()
 		options.add_argument("--disable-infobars")
-                options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
-                options.add_argument("--no-sandbox"); # Bypass OS security model
-
+		options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
+		options.add_argument("--no-sandbox"); # Bypass OS security model
+		
 		if(mode != 'GUI'):
 			options.add_argument('headless')
 		self.driver = webdriver.Chrome(options = options)
@@ -96,33 +95,91 @@ class Game:
 
 	def calculate_score(self, tA, tB, sA, sB, error_state):
 		if(error_state == '1'):
-			tA = 2
-		elif(error_state == '2'):
 			tB = 2
+		elif(error_state == '2'):
+			tA = 2
 
-		if(tA == 4 and tB == 2):
+		if(tA == 2 and tB == 0):
 			scoreA = 10
 			scoreB = 0
-		elif(tA == 3 and tB == 2):
+		elif(tA == 2 and tB == 1):
 			scoreA = 8
 			scoreB = 2
-		elif(tA == 2 and tB == 3):
+		elif(tA == 1 and tB == 2):
 			scoreA = 2
 			scoreB = 8
-		elif(tA == 2 and tB == 4):
+		elif(tA == 0 and tB == 2):
 			scoreA = 0
 			scoreB = 10
-		elif(tA == tB):
-			scoreA = 5
-			scoreB = 5
-		elif(tA > tB):
-			scoreA = 7
-			scoreB = 3
-		elif(tA < tB):
-			scoreA = 3
-			scoreB = 7
 		else:
-			AssertionError('cannot calculate score')
+			if(self.check_stagnant()):
+				if(tA == 1 and tB == 0):
+					scoreA = 7
+					scoreB = 3
+				elif(tA == 0 and tB == 0):
+					scoreA = 5
+					scoreB = 5
+				elif(tA == 1 and tB == 1):
+					scoreA = 5
+					scoreB = 5
+				elif(tA == 0 and tB == 1):
+					scoreA = 3
+					scoreB = 7
+			else:
+				if(self.get_current_player() == 1):
+					if(self.driver.execute_script('return player[current_player].soldiers.length;') == 0):
+						if(tA == 1 and tB == 0):
+							scoreA = 10
+							scoreB = 0
+						elif(tA == 0 and tB == 0):
+							scoreA = 8
+							scoreB = 2
+						elif(tA == 1 and tB == 1):
+							scoreA = 8
+							scoreB = 2
+						elif(tA == 0 and tB == 1):
+							scoreA = 6
+							scoreB = 4
+					else:
+						if(tA == 1 and tB == 0):
+							scoreA = 8
+							scoreB = 2
+						elif(tA == 0 and tB == 0):
+							scoreA = 6
+							scoreB = 4
+						elif(tA == 1 and tB == 1):
+							scoreA = 6
+							scoreB = 4
+						elif(tA == 0 and tB == 1):
+							scoreA = 4
+							scoreB = 6
+				else:
+					if(self.driver.execute_script('return player[current_player].soldiers.length;') == 0):
+						if(tA == 1 and tB == 0):
+							scoreA = 4
+							scoreB = 6
+						elif(tA == 0 and tB == 0):
+							scoreA = 2
+							scoreB = 8
+						elif(tA == 1 and tB == 1):
+							scoreA = 2
+							scoreB = 8
+						elif(tA == 0 and tB == 1):
+							scoreA = 0
+							scoreB = 10
+					else:
+						if(tA == 1 and tB == 0):
+							scoreA = 6
+							scoreB = 4
+						elif(tA == 0 and tB == 0):
+							scoreA = 4
+							scoreB = 6
+						elif(tA == 1 and tB == 1):
+							scoreA = 4
+							scoreB = 6
+						elif(tA == 0 and tB == 1):
+							scoreA = 2
+							scoreB = 8
 
 		scoreA = scoreA + float(sA) / 100.0
 		scoreB = scoreB + float(sB) / 100.0
@@ -137,8 +194,8 @@ class Game:
 
 		positions = list(self.driver.execute_script('return positions;'))
 
-		for i in range(self.rows):
-			for j in range(self.cols):
+		for i in range(self.cols):
+			for j in range(self.rows):
 				piece = dict(positions[i][j])['piece']
 				if(piece == 2):
 					townhallsA += 1
@@ -149,11 +206,16 @@ class Game:
 				elif(piece == -2):
 					townhallsB += 1
 
+		townhallsA, townhallsB = self.cols // 2 - townhallsB, self.cols // 2 - townhallsA
 		return self.calculate_score(townhallsA, townhallsB, soldiersA, soldiersB, error_state)[int(id) - 1]
 
 	def check_finished(self):
 		required_move = self.driver.execute_script('return required_move;')
 		return (required_move == 2)
+
+	def check_stagnant(self):
+		is_stagnant = self.driver.execute_script('return is_stagnant;')
+		return (is_stagnant == 1)
 
 	def sign(self, x):
 		if(x == 0):
@@ -184,8 +246,7 @@ class Game:
 	## Move types
 	# S - Select a Soldier
 	# M - Move a soldier
-	# B - Bombard a shot
-
+	# B - Throw a Bomb
 	"""
 	def execute_move(self, cmd) :
 		moves = cmd.split()
@@ -204,19 +265,22 @@ class Game:
 
 		if(type == 'S'):
 			self.click_at(x, y)
-		elif(type == 'M' and dict(positions[x][y])['guide'] == 1):
+		elif(type == 'M' and (dict(positions[x][y])['guide'] == 1 or dict(positions[x][y])['guide'] == 3)):
+			self.driver.execute_script('setAction(0);')
 			self.click_at(x, y)
-		elif(type == 'B' and dict(positions[x][y])['guide'] == 2):
+		elif(type == 'B' and (dict(positions[x][y])['guide'] == 2 or dict(positions[x][y])['guide'] == 3)):
+			self.driver.execute_script('setAction(1);')
 			self.click_at(x, y)
 		else:
 			string_valid = 0
 
 		move_valid = self.check_move_validity()
 		finished = self.check_finished()
+		stagnant = self.check_stagnant()
 
 		if(not (string_valid and move_valid)):
 			success = 0
-		elif(finished):
+		elif(finished or stagnant):
 			success = 2
 
 		return success
@@ -229,7 +293,9 @@ class Game:
 				part = parts[0] + '}'
 				out = json.loads(part)
 				exec("self.execute_move(\"" + out['data'] + "\")")
+			print(self.get_score(0, error_state = 0))
+			print(self.get_score(1, error_state = 0))
 
 if __name__ == "__main__":
-	game = Game(8, 8, 'GUI')
+	game = Game(10, 8, 'GUI')
 	game.simulate(sys.argv[1])

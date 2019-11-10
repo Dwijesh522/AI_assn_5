@@ -1,0 +1,1130 @@
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+BO                      
+      BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+   BO                   
+      BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+      BO                
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+   BO                   
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+         BO             
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+            BO          
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+         BO             
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+               BO       
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                  BO    
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+               BO       
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                     BO 
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO BO BO    BO    BO    
+      BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO BO BO    BO    BO    
+BO          BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO BO BO    BO    
+BO          BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO BO BO    BO    
+BO    BO          BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO BO BO    
+BO    BO          BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO BO BO    
+BO    BO    BO          
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO BO 
+BO    BO    BO          
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO BO BO    BO    BO    
+   B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+BO                      
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+   B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO BO BO    BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO BO BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+      BO                
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO BO BO    BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO BO BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+            BO          
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO BO BO    
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO BO 
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                  BO    
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+   BO                   
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+BO                      
+      BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO BO BO    
+BO    BO    BO          
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO BO BO    BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+         BO             
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                  BO    
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO BO BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+BO                      
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+   B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                  BO    
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+      BO                
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+            BO          
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO BO BO    BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+         BO             
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+               BO       
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO BO BO    BO    BO    
+BO          BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+            BO          
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+   BO                   
+      BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+               BO       
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO BO BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO BO BO    
+BO    BO          BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO BO BO    
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO BO BO    BO    
+BO          BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO BO BO    BO    BO    
+      BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO BO BO    BO    BO    
+   B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO BO BO    BO    
+BO    BO          BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                     BO 
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO BO 
+BO    BO    BO          
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO BO 
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+      BO                
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                  BO    
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO BO BO    
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO BO BO    
+BO    BO          BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                     BO 
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO BO BO    BO    
+BO          BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+            BO          
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO BO BO    BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+      BO                
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO BO BO    
+BO    BO    BO          
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+      BO                
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO BO BO    BO    BO    
+   B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO BO 
+BO B# BO B# BO B#    B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+   BO                   
+      BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+         BO             
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO BO BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+               BO       
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO BO BO    BO    
+BO B# BO B#    B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+BO                      
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+   B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO BO BO    BO    
+BO B#    B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+         BO             
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO BO BO    BO    BO    
+      BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO BO BO    BO    
+BO    BO          BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO BO 
+BO    BO    BO          
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+            BO          
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+BO                      
+      BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                  BO    
+BO    BO    BO          
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO BO BO    BO    BO    
+BO          BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+               BO       
+BO    BO          BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+   BO                   
+BO          BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
+current grid:
+W# WO W# WO W# WO W# WO 
+   WO    WO    WO    WO 
+   WO    WO    WO    WO 
+                        
+                        
+BO    BO    BO    BO    
+BO    BO    BO    BO    
+BO B# BO B# BO B# BO B# 
+
